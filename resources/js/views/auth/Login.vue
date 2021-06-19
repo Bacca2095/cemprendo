@@ -6,11 +6,11 @@
                     <b-card class="border-0 shadow">
                         <b-row align-h="center" class="my-5">
                             <b-col sm="auto" class="text-center">
-                                <svg-icon
-                                    variant="primary"
-                                    width="70"
-                                    height="70"
-                                ></svg-icon>
+                                <b-img
+                                    src="images/logo.png"
+                                    alt="Logo"
+                                    width="150"
+                                ></b-img>
                             </b-col>
                         </b-row>
                         <b-row align-h="center" class="my-3">

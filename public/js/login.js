@@ -227,11 +227,11 @@ var render = function() {
                               attrs: { sm: "auto" }
                             },
                             [
-                              _c("svg-icon", {
+                              _c("b-img", {
                                 attrs: {
-                                  variant: "primary",
-                                  width: "70",
-                                  height: "70"
+                                  src: "images/logo.png",
+                                  alt: "Logo",
+                                  width: "150"
                                 }
                               })
                             ],

@@ -44,6 +44,154 @@ const routes = [
                 }
             ]
         }
+    },
+    {
+        path: "/user",
+        name: "user.index",
+        component: () =>
+            import(
+                /* webpackChunkName: "user.index" */ "../views/user/Index.vue"
+            ),
+        meta: {
+            layout: AppLayout,
+            auth: true,
+            breadcrumb: [
+                {
+                    text: "Inicio",
+                    to: { name: "home" }
+                },
+                {
+                    text: "Usuarios",
+                    active: true
+                }
+            ]
+        }
+    },
+    {
+        path: "/user/create",
+        name: "user.create",
+        component: () =>
+            import(
+                /* webpackChunkName: "user.create" */ "../views/user/Form.vue"
+            ),
+        meta: {
+            layout: AppLayout,
+            auth: true,
+            breadcrumb: [
+                {
+                    text: "Inicio",
+                    to: { name: "home" }
+                },
+                {
+                    text: "Usuarios",
+                    to: { name: "user.index" }
+                },
+                {
+                    text: "Crear",
+                    active: true
+                }
+            ]
+        }
+    },
+    {
+        path: "/user/edit/:id",
+        name: "user.edit",
+        component: () =>
+            import(
+                /* webpackChunkName: "user.edit" */ "../views/user/Form.vue"
+            ),
+        meta: {
+            layout: AppLayout,
+            auth: true,
+            breadcrumb: [
+                {
+                    text: "Inicio",
+                    to: { name: "home" }
+                },
+                {
+                    text: "Usuarios",
+                    to: { name: "user.index" }
+                },
+                {
+                    text: "Editar",
+                    active: true
+                }
+            ]
+        }
+    },
+    {
+        path: "/form",
+        name: "form.index",
+        component: () =>
+            import(
+                /* webpackChunkName: "form.index" */ "../views/form/Index.vue"
+            ),
+        meta: {
+            layout: AppLayout,
+            auth: true,
+            breadcrumb: [
+                {
+                    text: "Inicio",
+                    to: { name: "home" }
+                },
+                {
+                    text: "Formularios",
+                    active: true
+                }
+            ]
+        }
+    },
+    {
+        path: "/form/create",
+        name: "form.create",
+        component: () =>
+            import(
+                /* webpackChunkName: "form.create" */ "../views/form/Form.vue"
+            ),
+        meta: {
+            layout: AppLayout,
+            auth: true,
+            breadcrumb: [
+                {
+                    text: "Inicio",
+                    to: { name: "home" }
+                },
+                {
+                    text: "Formularios",
+                    to: { name: "form.index" }
+                },
+                {
+                    text: "Crear",
+                    active: true
+                }
+            ]
+        }
+    },
+    {
+        path: "/form/edit/:id",
+        name: "form.edit",
+        component: () =>
+            import(
+                /* webpackChunkName: "form.edit" */ "../views/form/Form.vue"
+            ),
+        meta: {
+            layout: AppLayout,
+            auth: true,
+            breadcrumb: [
+                {
+                    text: "Inicio",
+                    to: { name: "home" }
+                },
+                {
+                    text: "Formularios",
+                    to: { name: "form.index" }
+                },
+                {
+                    text: "Editar",
+                    active: true
+                }
+            ]
+        }
     }
 ];
 

@@ -18,7 +18,7 @@
         }
 
         main {
-            display: block
+            display: block;
         }
 
         h1 {
@@ -204,7 +204,7 @@
         }
 
         .spinner-color {
-            background: #007bff;
+            background: #06963f;
         }
     </style>
 </head>

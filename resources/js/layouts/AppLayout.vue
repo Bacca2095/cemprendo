@@ -1,16 +1,16 @@
 <template>
-    <b-overlay :show="load" style="height:100vh">
-        <template #overlay>
-            <div class="sk-flow spinner-size">
-                <div class="sk-flow-dot spinner-color"></div>
-                <div class="sk-flow-dot spinner-color"></div>
-                <div class="sk-flow-dot spinner-color"></div>
-            </div>
-        </template>
-        <div class="app-grid">
-            <aside>
-                <Sidebar />
-            </aside>
+    <div class="app-grid">
+        <aside>
+            <Sidebar />
+        </aside>
+        <b-overlay :show="load" class="height:100vh">
+            <template #overlay>
+                <div class="sk-flow spinner-size">
+                    <div class="sk-flow-dot spinner-color"></div>
+                    <div class="sk-flow-dot spinner-color"></div>
+                    <div class="sk-flow-dot spinner-color"></div>
+                </div>
+            </template>
             <main>
                 <b-container class="my-2">
                     <b-row>
@@ -31,8 +31,8 @@
                 </b-container>
                 <slot />
             </main>
-        </div>
-    </b-overlay>
+        </b-overlay>
+    </div>
 </template>
 <script>
 import { mapState } from "vuex";

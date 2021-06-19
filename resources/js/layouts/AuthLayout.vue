@@ -3,7 +3,7 @@
         <main>
             <slot />
         </main>
-        <div class="h-100 w-100 bg-primary"></div>
+        <div class="bg"></div>
     </div>
 </template>
 <style scoped>
@@ -24,5 +24,14 @@
         justify-content: center;
         align-items: center;
     }
+}
+
+.bg {
+    background-image: url("/images/background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 50vw;
+    filter: blur(2px);
 }
 </style>
