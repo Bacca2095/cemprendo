@@ -6,10 +6,9 @@
     "/js/base-table.js": "/js/base-table.js",
     "/js/login.js": "/js/login.js",
     "/js/home.js": "/js/home.js",
-    "/css/app.css": "/css/app.css",
     "/js/user.index.js": "/js/user.index.js",
-    "/js/user.create.js": "/js/user.create.js",
     "/js/user.edit.js": "/js/user.edit.js",
     "/js/form.index.js": "/js/form.index.js",
-    "/js/form.edit.js": "/js/form.edit.js"
+    "/js/form.edit.js": "/js/form.edit.js",
+    "/css/app.css": "/css/app.css"
 }

@@ -1,7 +1,7 @@
 <template>
     <b-container>
         <b-row align-h="center">
-            <b-col sm="auto" md="6" lg="5">
+            <b-col sm="auto" md="6" lg="4">
                 <b-form @submit.stop.prevent="onLogin">
                     <b-card class="border-0 shadow">
                         <b-row align-h="center" class="my-5">

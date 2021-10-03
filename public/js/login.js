@@ -198,7 +198,7 @@ var render = function() {
         [
           _c(
             "b-col",
-            { attrs: { sm: "auto", md: "6", lg: "5" } },
+            { attrs: { sm: "auto", md: "6", lg: "4" } },
             [
               _c(
                 "b-form",

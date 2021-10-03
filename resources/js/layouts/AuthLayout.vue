@@ -3,13 +3,12 @@
         <main>
             <slot />
         </main>
-        <div class="bg"></div>
     </div>
 </template>
 <style scoped>
 .auth-grid {
     display: grid;
-    grid-template-columns: repeat(2, 50vw);
+    grid-template-columns: 100vw;
     grid-template-rows: 100vh;
     gap: 0px 0px;
     grid-template-areas: ".";
