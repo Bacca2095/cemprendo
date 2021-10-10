@@ -1,8 +1,11 @@
 <template>
   <b-container>
-    <b-row class="mt-4">
+    <b-row align-self="center" class="mt-4">
       <b-col><h1>Formularios</h1></b-col>
-      <b-col lg="auto" class="ml-auto text-center">
+      <b-col align-self="center" sm="auto">
+        <b-form-input type="search" placeholder="Buscar"></b-form-input>
+      </b-col>
+      <b-col align-self="center" lg="auto" class="ml-auto text-center">
         <b-row align-h="center">
           <b-col class="text-center">
             <router-link :to="{ name: 'form.create' }">
@@ -13,12 +16,13 @@
           <b-col class="text-center">
             <ButtonIcon variant="danger" icon="remove"
           /></b-col>
+          <b-col class="text-center"> <ButtonIcon icon="doc" /></b-col>
         </b-row>
       </b-col>
     </b-row>
     <b-row align-h="center">
       <b-col sm="auto">
-        <base-table></base-table>
+        <base-table :items="items"></base-table>
       </b-col>
     </b-row>
     <b-row align-h="center" class="mt-2">
@@ -55,6 +59,14 @@ export default {
       page: 1,
       size: 50,
       totalRows: 0,
+      items: [
+        {
+          nombre: "Test",
+          emprendimiento: "Energia renovable",
+          documento: "XXXXXXXX908",
+          fecha: "20-10-2021",
+        },
+      ],
     };
   },
   destroyed() {
@@ -64,6 +76,7 @@ export default {
     ...mapActions(["setLoad"]),
   },
   mounted() {
+    this.totalRows = this.items.length;
     this.setLoad(false);
   },
 };

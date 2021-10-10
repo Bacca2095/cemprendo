@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Laravel</title>
+    <title>Cemprendo</title>
     <link rel="stylesheet" href="../css/app.css">
     <!-- Styles -->
     <style>
@@ -219,6 +219,9 @@
             </div>
         </div>
     </div>
+
+    <script src="{{ asset('js/manifest.js') }}"></script>
+    <script src="{{ asset('js/vendor.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 

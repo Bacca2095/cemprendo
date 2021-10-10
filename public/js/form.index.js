@@ -64,6 +64,10 @@ __webpack_require__.r(__webpack_exports__);
         this.title = "Recargar";
         break;
 
+      case "doc":
+        this.title = "Descargar";
+        break;
+
       default:
         break;
     }
@@ -138,6 +142,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -148,7 +156,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       page: 1,
       size: 50,
-      totalRows: 0
+      totalRows: 0,
+      items: [{
+        nombre: "Test",
+        emprendimiento: "Energia renovable",
+        documento: "XXXXXXXX908",
+        fecha: "20-10-2021"
+      }]
     };
   },
   destroyed: function destroyed() {
@@ -156,6 +170,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)(["setLoad"])),
   mounted: function mounted() {
+    this.totalRows = this.items.length;
     this.setLoad(false);
   }
 });
@@ -446,13 +461,27 @@ var render = function() {
     [
       _c(
         "b-row",
-        { staticClass: "mt-4" },
+        { staticClass: "mt-4", attrs: { "align-self": "center" } },
         [
           _c("b-col", [_c("h1", [_vm._v("Formularios")])]),
           _vm._v(" "),
           _c(
             "b-col",
-            { staticClass: "ml-auto text-center", attrs: { lg: "auto" } },
+            { attrs: { "align-self": "center", sm: "auto" } },
+            [
+              _c("b-form-input", {
+                attrs: { type: "search", placeholder: "Buscar" }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            {
+              staticClass: "ml-auto text-center",
+              attrs: { "align-self": "center", lg: "auto" }
+            },
             [
               _c(
                 "b-row",
@@ -488,6 +517,13 @@ var render = function() {
                       })
                     ],
                     1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-col",
+                    { staticClass: "text-center" },
+                    [_c("ButtonIcon", { attrs: { icon: "doc" } })],
+                    1
                   )
                 ],
                 1
@@ -502,7 +538,14 @@ var render = function() {
       _c(
         "b-row",
         { attrs: { "align-h": "center" } },
-        [_c("b-col", { attrs: { sm: "auto" } }, [_c("base-table")], 1)],
+        [
+          _c(
+            "b-col",
+            { attrs: { sm: "auto" } },
+            [_c("base-table", { attrs: { items: _vm.items } })],
+            1
+          )
+        ],
         1
       ),
       _vm._v(" "),

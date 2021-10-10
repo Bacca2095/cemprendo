@@ -11,10 +11,7 @@
       </b-col>
       <b-col sm="auto" md="6" lg="4" align-self="start">
         <b-form-group label="Fecha de nacimiento">
-          <b-form-datepicker
-            id="example-datepicker"
-            class="mb-2"
-          ></b-form-datepicker>
+          <b-form-datepicker class="mb-2"></b-form-datepicker>
         </b-form-group>
       </b-col>
       <b-col sm="auto" md="6" lg="4" align-self="start">
@@ -52,10 +49,7 @@
       </b-col>
       <b-col sm="auto" md="6" lg="4" align-self="start">
         <b-form-group label="Fecha de expedicion">
-          <b-form-datepicker
-            id="example-datepicker"
-            class="mb-2"
-          ></b-form-datepicker>
+          <b-form-datepicker class="mb-2"></b-form-datepicker>
         </b-form-group>
       </b-col>
       <b-col sm="auto" md="6" lg="4" align-self="start">

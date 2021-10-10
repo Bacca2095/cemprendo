@@ -45,6 +45,9 @@ export default {
       case "reload":
         this.title = "Recargar";
         break;
+      case "doc":
+        this.title = "Descargar";
+        break;
       default:
         break;
     }

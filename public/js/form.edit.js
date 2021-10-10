@@ -208,6 +208,144 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
 
 /***/ }),
@@ -421,12 +559,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -1680,9 +1812,118 @@ var render = function() {
       _c(
         "b-row",
         [
+          _c(
+            "b-col",
+            { attrs: { sm: "12", "align-self": "start" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  attrs: {
+                    label:
+                      "¿Porque considera que esta idea es una oportunidad de negocio?"
+                  }
+                },
+                [
+                  _c("b-form-radio", { attrs: { name: "op", value: "1" } }, [
+                    _vm._v("No existe este negocio")
+                  ]),
+                  _vm._v(" "),
+                  _c("b-form-radio", { attrs: { name: "op", value: "2" } }, [
+                    _vm._v("Existe, pero no es suficiente")
+                  ]),
+                  _vm._v(" "),
+                  _c("b-form-radio", { attrs: { name: "op", value: "3" } }, [
+                    _vm._v("Experiencia adquirida")
+                  ]),
+                  _vm._v(" "),
+                  _c("b-form-radio", { attrs: { name: "op", value: "4" } }, [
+                    _vm._v("Otro")
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            [
+              _c(
+                "b-form-group",
+                { attrs: { label: "¿Cual?" } },
+                [_c("b-form-input", { attrs: { type: "text" } })],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-row",
+        [
           _c("b-col", { staticClass: "text-center" }, [
             _c("b", [_c("h4", [_vm._v("3.Expectativa")])])
           ])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-row",
+        [
+          _c(
+            "b-col",
+            { attrs: { sm: "12", "align-self": "start" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  attrs: { label: "¿Cual es su expectativa con ese negocio?" }
+                },
+                [
+                  _c("b-form-radio", { attrs: { name: "ex", value: "1" } }, [
+                    _vm._v("Subsistir")
+                  ]),
+                  _vm._v(" "),
+                  _c("b-form-radio", { attrs: { name: "ex", value: "2" } }, [
+                    _vm._v("Ser independiente")
+                  ]),
+                  _vm._v(" "),
+                  _c("b-form-radio", { attrs: { name: "ex", value: "3" } }, [
+                    _vm._v("Tener otros ingresos/ aumentar ingresos")
+                  ]),
+                  _vm._v(" "),
+                  _c("b-form-radio", { attrs: { name: "ex", value: "4" } }, [
+                    _vm._v("Generar empleo")
+                  ]),
+                  _vm._v(" "),
+                  _c("b-form-radio", { attrs: { name: "ex", value: "5" } }, [
+                    _vm._v("Otro")
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            [
+              _c(
+                "b-form-group",
+                { attrs: { label: "¿Cual?" } },
+                [_c("b-form-input", { attrs: { type: "text" } })],
+                1
+              )
+            ],
+            1
+          )
         ],
         1
       ),
@@ -1700,9 +1941,132 @@ var render = function() {
       _c(
         "b-row",
         [
+          _c(
+            "b-col",
+            { attrs: { sm: "12", "align-self": "start" } },
+            [
+              _c(
+                "b-form-group",
+                { attrs: { label: "¿De donde nacio esa idea de negocio?" } },
+                [
+                  _c("b-form-radio", { attrs: { name: "na", value: "1" } }, [
+                    _vm._v("Iniciativa propia")
+                  ]),
+                  _vm._v(" "),
+                  _c("b-form-radio", { attrs: { name: "na", value: "2" } }, [
+                    _vm._v("Iniciativa de un amigo o familiar")
+                  ]),
+                  _vm._v(" "),
+                  _c("b-form-radio", { attrs: { name: "na", value: "2" } }, [
+                    _vm._v("Influencia del entorno cercano")
+                  ]),
+                  _vm._v(" "),
+                  _c("b-form-radio", { attrs: { name: "na", value: "2" } }, [
+                    _vm._v("Influencia de medios de comunicacion")
+                  ]),
+                  _vm._v(" "),
+                  _c("b-form-radio", { attrs: { name: "na", value: "2" } }, [
+                    _vm._v("Continuar con la linea familiar")
+                  ]),
+                  _vm._v(" "),
+                  _c("b-form-radio", { attrs: { name: "na", value: "2" } }, [
+                    _vm._v("Otro")
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            [
+              _c(
+                "b-form-group",
+                { attrs: { label: "¿Cual?" } },
+                [_c("b-form-input", { attrs: { type: "text" } })],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-row",
+        [
           _c("b-col", { staticClass: "text-center" }, [
             _c("b", [_c("h4", [_vm._v("5.Formacion o experiencia")])])
           ])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-row",
+        [
+          _c(
+            "b-col",
+            { attrs: { sm: "6", "align-self": "start" } },
+            [
+              _c(
+                "b-form-group",
+                { attrs: { label: "Formacion" } },
+                [
+                  _c("b-form-radio", { attrs: { name: "fo", value: "1" } }, [
+                    _vm._v("Ninguna o nula")
+                  ]),
+                  _vm._v(" "),
+                  _c("b-form-radio", { attrs: { name: "fo", value: "2" } }, [
+                    _vm._v("Muy basica o elemental")
+                  ]),
+                  _vm._v(" "),
+                  _c("b-form-radio", { attrs: { name: "fo", value: "2" } }, [
+                    _vm._v("Media / Se defiende")
+                  ]),
+                  _vm._v(" "),
+                  _c("b-form-radio", { attrs: { name: "fo", value: "2" } }, [
+                    _vm._v("Profunda / Amplia")
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { attrs: { sm: "6", "align-self": "start" } },
+            [
+              _c(
+                "b-form-group",
+                { attrs: { label: "Experiencia" } },
+                [
+                  _c("b-form-radio", { attrs: { name: "fo", value: "1" } }, [
+                    _vm._v("Ninguna o nula")
+                  ]),
+                  _vm._v(" "),
+                  _c("b-form-radio", { attrs: { name: "fo", value: "2" } }, [
+                    _vm._v("Muy basica o elemental")
+                  ]),
+                  _vm._v(" "),
+                  _c("b-form-radio", { attrs: { name: "fo", value: "2" } }, [
+                    _vm._v("Media / Se defiende")
+                  ]),
+                  _vm._v(" "),
+                  _c("b-form-radio", { attrs: { name: "fo", value: "2" } }, [
+                    _vm._v("Profunda / Amplia")
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          )
         ],
         1
       ),
@@ -1720,9 +2084,107 @@ var render = function() {
       _c(
         "b-row",
         [
+          _c(
+            "b-col",
+            { attrs: { sm: "12", "align-self": "start" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  attrs: {
+                    label:
+                      "¿Tiene claro quienes serian los clientes de su negocio?"
+                  }
+                },
+                [
+                  _c("b-form-radio", { attrs: { name: "fo", value: "1" } }, [
+                    _vm._v("No los puede describir con claridad")
+                  ]),
+                  _vm._v(" "),
+                  _c("b-form-radio", { attrs: { name: "fo", value: "2" } }, [
+                    _vm._v(
+                      "Tiene alguna idea basica de las caracteristicas de sus\n          clientes"
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("b-form-radio", { attrs: { name: "fo", value: "2" } }, [
+                    _vm._v("Tiene muy claro quienes serian sus clientes")
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-row",
+        [
           _c("b-col", { staticClass: "text-center" }, [
             _c("b", [_c("h4", [_vm._v("7.Recursos")])])
           ])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-row",
+        [
+          _c(
+            "b-col",
+            { attrs: { sm: "12", "align-self": "start" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  attrs: { label: "¿Cuenta con algun recurso para su negocio?" }
+                },
+                [
+                  _c("b-form-radio", { attrs: { name: "fo", value: "1" } }, [
+                    _vm._v("Local")
+                  ]),
+                  _vm._v(" "),
+                  _c("b-form-radio", { attrs: { name: "fo", value: "2" } }, [
+                    _vm._v("Dinero")
+                  ]),
+                  _vm._v(" "),
+                  _c("b-form-radio", { attrs: { name: "fo", value: "2" } }, [
+                    _vm._v("Equipo")
+                  ]),
+                  _vm._v(" "),
+                  _c("b-form-radio", { attrs: { name: "fo", value: "2" } }, [
+                    _vm._v("Personal")
+                  ]),
+                  _vm._v(" "),
+                  _c("b-form-radio", { attrs: { name: "fo", value: "2" } }, [
+                    _vm._v("Materia prima")
+                  ]),
+                  _vm._v(" "),
+                  _c("b-form-radio", { attrs: { name: "fo", value: "2" } }, [
+                    _vm._v("Conocimiento del negocio")
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            [
+              _c(
+                "b-form-group",
+                { attrs: { label: "¿Cual?" } },
+                [_c("b-form-input", { attrs: { type: "text" } })],
+                1
+              )
+            ],
+            1
+          )
         ],
         1
       )
@@ -2503,12 +2965,7 @@ var render = function() {
               _c(
                 "b-form-group",
                 { attrs: { label: "Fecha de nacimiento" } },
-                [
-                  _c("b-form-datepicker", {
-                    staticClass: "mb-2",
-                    attrs: { id: "example-datepicker" }
-                  })
-                ],
+                [_c("b-form-datepicker", { staticClass: "mb-2" })],
                 1
               )
             ],
@@ -2610,12 +3067,7 @@ var render = function() {
               _c(
                 "b-form-group",
                 { attrs: { label: "Fecha de expedicion" } },
-                [
-                  _c("b-form-datepicker", {
-                    staticClass: "mb-2",
-                    attrs: { id: "example-datepicker" }
-                  })
-                ],
+                [_c("b-form-datepicker", { staticClass: "mb-2" })],
                 1
               )
             ],

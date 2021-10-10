@@ -29,6 +29,13 @@ const routes = [
         meta: { layout: AuthLayout, logged: true }
     },
     {
+        path: "/reset",
+        name: "reset",
+        component: () =>
+            import(/* webpackChunkName: "login" */ "../views/auth/Reset.vue"),
+        meta: { layout: AuthLayout, logged: true }
+    },
+    {
         path: "/",
         name: "home",
         component: () =>
