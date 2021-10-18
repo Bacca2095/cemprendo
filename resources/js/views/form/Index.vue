@@ -12,17 +12,27 @@
               <ButtonIcon />
             </router-link>
           </b-col>
-          <b-col class="text-center"> <ButtonIcon icon="edit" /></b-col>
-          <b-col class="text-center">
-            <ButtonIcon variant="danger" icon="remove"
+          <b-col class="text-center" v-if="showActions">
+            <ButtonIcon icon="edit" @click="edit()"
           /></b-col>
-          <b-col class="text-center"> <ButtonIcon icon="doc" /></b-col>
+          <b-col class="text-center" v-if="showActions">
+            <ButtonIcon variant="danger" icon="remove" @click="deleteById()"
+          /></b-col>
+          <b-col class="text-center" v-if="showActions">
+            <ButtonIcon icon="doc"
+          /></b-col>
         </b-row>
       </b-col>
     </b-row>
     <b-row align-h="center">
       <b-col sm="auto">
-        <base-table :items="items"></base-table>
+        <base-table
+          :items="items"
+          :fields="fields"
+          ref="form"
+          @row-selected="onRowSelected"
+          @row-dblclicked="onRowDblClicked"
+        ></base-table>
       </b-col>
     </b-row>
     <b-row align-h="center" class="mt-2">
@@ -50,7 +60,7 @@
   </b-container>
 </template>
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 import ButtonIcon from "../../components/button/ButtonIcon.vue";
 export default {
   components: { ButtonIcon },
@@ -59,25 +69,55 @@ export default {
       page: 1,
       size: 50,
       totalRows: 0,
-      items: [
-        {
-          nombre: "Test",
-          emprendimiento: "Energia renovable",
-          documento: "XXXXXXXX908",
-          fecha: "20-10-2021",
-        },
+      items: [],
+      fields: [
+        { key: "nombre", label: "Nombre" },
+        { key: "documento", label: "Documento" },
+        { key: "idea", label: "Emprendimiento" },
+        { key: "fecha", label: "Fecha de solicitud" },
       ],
+      form: null,
+      showActions: false,
     };
   },
   destroyed() {
     this.setLoad(true);
   },
   methods: {
-    ...mapActions(["setLoad"]),
+    ...mapActions(["setLoad", "deleteForm", "setAllForm"]),
+    onRowSelected(items) {
+      if (items.length > 0) {
+        this.form = items[0];
+        this.showActions = true;
+      } else {
+        this.cliente = null;
+        this.showActions = false;
+      }
+    },
+    onRowDblClicked(item) {
+      this.form = item;
+      this.edit();
+    },
+    edit() {
+      if (this.form) {
+        this.$router.push({
+          name: "form.edit",
+          params: { formId: this.form.id },
+        });
+      }
+    },
+    deleteById() {
+      this.deleteForm(this.form.id);
+      this.$refs.form.$refs.table.refresh();
+    },
   },
   mounted() {
-    this.totalRows = this.items.length;
     this.setLoad(false);
+    this.items.push(...this.formularios);
+    this.totalRows = this.items.length;
+  },
+  computed: {
+    ...mapState(["formularios"]),
   },
 };
 </script>

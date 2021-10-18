@@ -1,5 +1,5 @@
 <template>
-  <b-card class="overflow-auto" style="height: 75vh">
+  <b-card class="overflow-auto" style="height: 65vh">
     <b-row
       ><b-col class="text-center">
         <b><h4>1.Idea</h4></b></b-col
@@ -8,25 +8,32 @@
     <b-row>
       <b-col sm="12" align-self="start">
         <b-form-group label="¿Cual es su idea de negocio?">
-          <b-form-textarea></b-form-textarea>
+          <b-form-textarea v-model="value.idea"></b-form-textarea>
         </b-form-group>
       </b-col>
       <b-col sm="12" align-self="start">
         <b-form-group label="¿Su negocio se encuentra funcionando actualmente?">
-          <b-form-radio name="salud" value="1">SI</b-form-radio>
-          <b-form-radio name="salud" value="2">NO</b-form-radio>
+          <b-form-radio v-model="value.funcionando" name="salud" value="1"
+            >SI</b-form-radio
+          >
+          <b-form-radio v-model="value.funcionando" name="salud" value="2"
+            >NO</b-form-radio
+          >
         </b-form-group>
       </b-col>
       <b-col sm="12" align-self="start">
         <b-form-group
           label="¿Que tiempo de funcionamiento tiene su unidad productiva?"
         >
-          <b-form-input type="text"></b-form-input>
+          <b-form-input
+            v-model="value.tiempoFuncionamiento"
+            type="text"
+          ></b-form-input>
         </b-form-group>
       </b-col>
       <b-col sm="12" align-self="start">
         <b-form-group label="¿Valor de sus ventas actuales?">
-          <b-form-input type="text"></b-form-input>
+          <b-form-input v-model="value.venta" type="text"></b-form-input>
         </b-form-group>
       </b-col>
     </b-row>
@@ -41,20 +48,27 @@
         <b-form-group
           label="¿Porque considera que esta idea es una oportunidad de negocio?"
         >
-          <b-form-radio name="op" value="1"
+          <b-form-radio v-model="value.oportunidad" name="op" value="1"
             >No existe este negocio</b-form-radio
           >
           <b-form-radio name="op" value="2"
             >Existe, pero no es suficiente</b-form-radio
           >
 
-          <b-form-radio name="op" value="3">Experiencia adquirida</b-form-radio>
-          <b-form-radio name="op" value="4">Otro</b-form-radio>
+          <b-form-radio v-model="value.oportunidad" name="op" value="3"
+            >Experiencia adquirida</b-form-radio
+          >
+          <b-form-radio v-model="value.oportunidad" name="op" value="4"
+            >Otro</b-form-radio
+          >
         </b-form-group>
       </b-col>
       <b-col>
         <b-form-group label="¿Cual?">
-          <b-form-input type="text"></b-form-input>
+          <b-form-input
+            v-model="value.otroOportunidad"
+            type="text"
+          ></b-form-input>
         </b-form-group>
       </b-col>
     </b-row>
@@ -67,19 +81,30 @@
     <b-row>
       <b-col sm="12" align-self="start">
         <b-form-group label="¿Cual es su expectativa con ese negocio?">
-          <b-form-radio name="ex" value="1">Subsistir</b-form-radio>
-          <b-form-radio name="ex" value="2">Ser independiente</b-form-radio>
+          <b-form-radio v-model="value.expectativa" name="ex" value="1"
+            >Subsistir</b-form-radio
+          >
+          <b-form-radio v-model="value.expectativa" name="ex" value="2"
+            >Ser independiente</b-form-radio
+          >
 
-          <b-form-radio name="ex" value="3"
+          <b-form-radio v-model="value.expectativa" name="ex" value="3"
             >Tener otros ingresos/ aumentar ingresos</b-form-radio
           >
-          <b-form-radio name="ex" value="4">Generar empleo</b-form-radio>
-          <b-form-radio name="ex" value="5">Otro</b-form-radio>
+          <b-form-radio v-model="value.expectativa" name="ex" value="4"
+            >Generar empleo</b-form-radio
+          >
+          <b-form-radio v-model="value.expectativa" name="ex" value="5"
+            >Otro</b-form-radio
+          >
         </b-form-group>
       </b-col>
       <b-col>
         <b-form-group label="¿Cual?">
-          <b-form-input type="text"></b-form-input>
+          <b-form-input
+            v-model="value.otroExpectativa"
+            type="text"
+          ></b-form-input>
         </b-form-group>
       </b-col>
     </b-row>
@@ -91,27 +116,34 @@
     <b-row>
       <b-col sm="12" align-self="start">
         <b-form-group label="¿De donde nacio esa idea de negocio?">
-          <b-form-radio name="na" value="1">Iniciativa propia</b-form-radio>
-          <b-form-radio name="na" value="2"
+          <b-form-radio v-model="value.nacimientoIdea" name="na" value="1"
+            >Iniciativa propia</b-form-radio
+          >
+          <b-form-radio v-model="value.nacimientoIdea" name="na" value="2"
             >Iniciativa de un amigo o familiar</b-form-radio
           >
 
-          <b-form-radio name="na" value="2"
+          <b-form-radio v-model="value.nacimientoIdea" name="na" value="2"
             >Influencia del entorno cercano</b-form-radio
           >
-          <b-form-radio name="na" value="2"
+          <b-form-radio v-model="value.nacimientoIdea" name="na" value="2"
             >Influencia de medios de comunicacion</b-form-radio
           >
-          <b-form-radio name="na" value="2"
+          <b-form-radio v-model="value.nacimientoIdea" name="na" value="2"
             >Continuar con la linea familiar</b-form-radio
           >
 
-          <b-form-radio name="na" value="2">Otro</b-form-radio>
+          <b-form-radio v-model="value.nacimientoIdea" name="na" value="2"
+            >Otro</b-form-radio
+          >
         </b-form-group>
       </b-col>
       <b-col>
         <b-form-group label="¿Cual?">
-          <b-form-input type="text"></b-form-input>
+          <b-form-input
+            v-model="value.otroNacimientoIdea"
+            type="text"
+          ></b-form-input>
         </b-form-group>
       </b-col>
     </b-row>
@@ -124,24 +156,36 @@
     <b-row>
       <b-col sm="6" align-self="start">
         <b-form-group label="Formacion">
-          <b-form-radio name="fo" value="1">Ninguna o nula</b-form-radio>
-          <b-form-radio name="fo" value="2"
+          <b-form-radio v-model="value.formacion" name="fo" value="1"
+            >Ninguna o nula</b-form-radio
+          >
+          <b-form-radio v-model="value.formacion" name="fo" value="2"
             >Muy basica o elemental</b-form-radio
           >
 
-          <b-form-radio name="fo" value="2">Media / Se defiende</b-form-radio>
-          <b-form-radio name="fo" value="2">Profunda / Amplia</b-form-radio>
+          <b-form-radio v-model="value.formacion" name="fo" value="3"
+            >Media / Se defiende</b-form-radio
+          >
+          <b-form-radio v-model="value.formacion" name="fo" value="4"
+            >Profunda / Amplia</b-form-radio
+          >
         </b-form-group>
       </b-col>
       <b-col sm="6" align-self="start">
         <b-form-group label="Experiencia">
-          <b-form-radio name="fo" value="1">Ninguna o nula</b-form-radio>
-          <b-form-radio name="fo" value="2"
+          <b-form-radio v-model="value.experiencia" name="exp" value="1"
+            >Ninguna o nula</b-form-radio
+          >
+          <b-form-radio v-model="value.experiencia" name="exp" value="2"
             >Muy basica o elemental</b-form-radio
           >
 
-          <b-form-radio name="fo" value="2">Media / Se defiende</b-form-radio>
-          <b-form-radio name="fo" value="2">Profunda / Amplia</b-form-radio>
+          <b-form-radio v-model="value.experiencia" name="exp" value="3"
+            >Media / Se defiende</b-form-radio
+          >
+          <b-form-radio v-model="value.experiencia" name="exp" value="4"
+            >Profunda / Amplia</b-form-radio
+          >
         </b-form-group>
       </b-col>
     </b-row>
@@ -157,15 +201,15 @@
         <b-form-group
           label="¿Tiene claro quienes serian los clientes de su negocio?"
         >
-          <b-form-radio name="fo" value="1"
+          <b-form-radio v-model="value.clientes" name="ci" value="1"
             >No los puede describir con claridad</b-form-radio
           >
-          <b-form-radio name="fo" value="2"
+          <b-form-radio v-model="value.clientes" name="ci" value="2"
             >Tiene alguna idea basica de las caracteristicas de sus
             clientes</b-form-radio
           >
 
-          <b-form-radio name="fo" value="2"
+          <b-form-radio v-model="value.clientes" name="ci" value="3"
             >Tiene muy claro quienes serian sus clientes</b-form-radio
           >
         </b-form-group>
@@ -179,22 +223,32 @@
     <b-row>
       <b-col sm="12" align-self="start">
         <b-form-group label="¿Cuenta con algun recurso para su negocio?">
-          <b-form-radio name="fo" value="1">Local</b-form-radio>
-          <b-form-radio name="fo" value="2">Dinero</b-form-radio>
+          <b-form-radio v-model="value.recursos" name="re" value="1"
+            >Local</b-form-radio
+          >
+          <b-form-radio v-model="value.recursos" name="re" value="2"
+            >Dinero</b-form-radio
+          >
 
-          <b-form-radio name="fo" value="2">Equipo</b-form-radio>
+          <b-form-radio v-model="value.recursos" name="re" value="2"
+            >Equipo</b-form-radio
+          >
 
-          <b-form-radio name="fo" value="2">Personal</b-form-radio>
-          <b-form-radio name="fo" value="2">Materia prima</b-form-radio>
+          <b-form-radio v-model="value.recursos" name="re" value="2"
+            >Personal</b-form-radio
+          >
+          <b-form-radio v-model="value.recursos" name="re" value="2"
+            >Materia prima</b-form-radio
+          >
 
-          <b-form-radio name="fo" value="2"
+          <b-form-radio v-model="value.recursos" name="re" value="2"
             >Conocimiento del negocio</b-form-radio
           >
         </b-form-group>
       </b-col>
       <b-col>
         <b-form-group label="¿Cual?">
-          <b-form-input type="text"></b-form-input>
+          <b-form-input v-model="value.otroRecurso" type="text"></b-form-input>
         </b-form-group>
       </b-col>
     </b-row>
@@ -202,5 +256,17 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    value: {
+      type: Object,
+      required: true,
+    },
+  },
+  watch: {
+    value() {
+      this.$emit("input", this.value);
+    },
+  },
+};
 </script>

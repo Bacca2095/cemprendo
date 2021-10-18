@@ -1,5 +1,5 @@
 <template>
-  <b-card class="overflow-auto" style="height: 75vh">
+  <b-card class="overflow-auto" style="height: 65vh">
     <b-row>
       <b-col sm="auto" md="6" lg="4" align-self="start">
         <b-form-group label="Nombre y apellidos">
@@ -303,5 +303,17 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    value: {
+      type: Object,
+      required: true,
+    },
+  },
+  watch: {
+    value() {
+      this.$emit("input", this.value);
+    },
+  },
+};
 </script>

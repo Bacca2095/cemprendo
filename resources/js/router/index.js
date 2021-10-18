@@ -175,7 +175,7 @@ const routes = [
         }
     },
     {
-        path: "/form/edit/:id",
+        path: "/form/edit/:formId",
         name: "form.edit",
         component: () =>
             import(

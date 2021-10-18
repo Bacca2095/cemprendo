@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Traits\ApiResponser;
+use Illuminate\Support\Facades\Log;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -15,7 +17,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            $users = User::all();
+            return $this->success($users, "Consulta exitosa", 200);
+        } catch (\Throwable $th) {
+            return $this->error($th, $th->message, 500);
+        }
     }
 
     /**

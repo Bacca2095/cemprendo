@@ -18,7 +18,7 @@
     </b-row>
     <b-row align-h="center">
       <b-col sm="auto">
-        <base-table></base-table>
+        <base-table :items="provider" :fields="fields"></base-table>
       </b-col>
     </b-row>
     <b-row align-h="center" class="mt-2">
@@ -48,6 +48,8 @@
 <script>
 import { mapActions } from "vuex";
 import ButtonIcon from "../../components/button/ButtonIcon.vue";
+import { getAllUsers } from "../../api/user";
+
 export default {
   components: { ButtonIcon },
   data() {
@@ -55,6 +57,11 @@ export default {
       page: 1,
       size: 50,
       totalRows: 0,
+      fields: [
+        { key: "name", label: "Usuario" },
+        { key: "email", label: "Email" },
+        { key: "status", label: "Estado" },
+      ],
     };
   },
   destroyed() {
@@ -62,6 +69,17 @@ export default {
   },
   methods: {
     ...mapActions(["setLoad"]),
+
+    provider() {
+      return getAllUsers()
+        .then((response) => {
+          this.totalRows = response.data.content.length;
+          return response.data.content;
+        })
+        .catch((err) => {
+          return [];
+        });
+    },
   },
   mounted() {
     this.setLoad(false);

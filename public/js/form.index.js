@@ -89,12 +89,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _components_button_ButtonIcon_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/button/ButtonIcon.vue */ "./resources/js/components/button/ButtonIcon.vue");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -157,22 +179,66 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       page: 1,
       size: 50,
       totalRows: 0,
-      items: [{
-        nombre: "Test",
-        emprendimiento: "Energia renovable",
-        documento: "XXXXXXXX908",
-        fecha: "20-10-2021"
-      }]
+      items: [],
+      fields: [{
+        key: "nombre",
+        label: "Nombre"
+      }, {
+        key: "documento",
+        label: "Documento"
+      }, {
+        key: "idea",
+        label: "Emprendimiento"
+      }, {
+        key: "fecha",
+        label: "Fecha de solicitud"
+      }],
+      form: null,
+      showActions: false
     };
   },
   destroyed: function destroyed() {
     this.setLoad(true);
   },
-  methods: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)(["setLoad"])),
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)(["setLoad", "deleteForm", "setAllForm"])), {}, {
+    onRowSelected: function onRowSelected(items) {
+      if (items.length > 0) {
+        this.form = items[0];
+        this.showActions = true;
+      } else {
+        this.cliente = null;
+        this.showActions = false;
+      }
+    },
+    onRowDblClicked: function onRowDblClicked(item) {
+      this.form = item;
+      this.edit();
+    },
+    edit: function edit() {
+      if (this.form) {
+        this.$router.push({
+          name: "form.edit",
+          params: {
+            formId: this.form.id
+          }
+        });
+      }
+    },
+    deleteById: function deleteById() {
+      this.deleteForm(this.form.id);
+      this.$refs.form.$refs.table.refresh();
+    }
+  }),
   mounted: function mounted() {
-    this.totalRows = this.items.length;
+    var _this$items;
+
     this.setLoad(false);
-  }
+
+    (_this$items = this.items).push.apply(_this$items, _toConsumableArray(this.formularios));
+
+    this.totalRows = this.items.length;
+  },
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)(["formularios"]))
 });
 
 /***/ }),
@@ -501,30 +567,50 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _c(
-                    "b-col",
-                    { staticClass: "text-center" },
-                    [_c("ButtonIcon", { attrs: { icon: "edit" } })],
-                    1
-                  ),
+                  _vm.showActions
+                    ? _c(
+                        "b-col",
+                        { staticClass: "text-center" },
+                        [
+                          _c("ButtonIcon", {
+                            attrs: { icon: "edit" },
+                            on: {
+                              click: function($event) {
+                                return _vm.edit()
+                              }
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
-                  _c(
-                    "b-col",
-                    { staticClass: "text-center" },
-                    [
-                      _c("ButtonIcon", {
-                        attrs: { variant: "danger", icon: "remove" }
-                      })
-                    ],
-                    1
-                  ),
+                  _vm.showActions
+                    ? _c(
+                        "b-col",
+                        { staticClass: "text-center" },
+                        [
+                          _c("ButtonIcon", {
+                            attrs: { variant: "danger", icon: "remove" },
+                            on: {
+                              click: function($event) {
+                                return _vm.deleteById()
+                              }
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
-                  _c(
-                    "b-col",
-                    { staticClass: "text-center" },
-                    [_c("ButtonIcon", { attrs: { icon: "doc" } })],
-                    1
-                  )
+                  _vm.showActions
+                    ? _c(
+                        "b-col",
+                        { staticClass: "text-center" },
+                        [_c("ButtonIcon", { attrs: { icon: "doc" } })],
+                        1
+                      )
+                    : _vm._e()
                 ],
                 1
               )
@@ -542,7 +628,16 @@ var render = function() {
           _c(
             "b-col",
             { attrs: { sm: "auto" } },
-            [_c("base-table", { attrs: { items: _vm.items } })],
+            [
+              _c("base-table", {
+                ref: "form",
+                attrs: { items: _vm.items, fields: _vm.fields },
+                on: {
+                  "row-selected": _vm.onRowSelected,
+                  "row-dblclicked": _vm.onRowDblClicked
+                }
+              })
+            ],
             1
           )
         ],

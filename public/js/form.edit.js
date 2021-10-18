@@ -59,6 +59,66 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -80,14 +140,127 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     Familia: _components_formularios_familia_Familia_vue__WEBPACK_IMPORTED_MODULE_7__.default
   },
   data: function data() {
-    return {};
+    return {
+      formId: this.$route.params.formId,
+      form: {
+        id: null,
+        usuario: {
+          nombre: null,
+          nacimiento: null,
+          genero: null,
+          tipoDocumento: null,
+          documento: null,
+          fechaExpedicion: null,
+          lugarExpedicion: null,
+          libretaMilitar: null,
+          distrito: null,
+          anio: null,
+          categoria: null,
+          licencia: null,
+          categoriaLicencia: null,
+          tieneVehiculo: null,
+          tipoVehiculo: null,
+          estadoCivil: null,
+          direccion: null,
+          barrio: null,
+          comuna: null,
+          estrato: null,
+          celular: null,
+          email: null,
+          segundaLengua: null,
+          tarjetaProfesional: null,
+          discapacidad: null,
+          tipoDiscapacidad: null,
+          personasCargo: null,
+          totalCargo: null,
+          parentesco: null,
+          desplazado: null,
+          rupd: null,
+          beneficiario: null
+        },
+        formacionAcademica: {
+          formacion: null,
+          otraFormacion: null
+        },
+        situacionGeneral: {
+          situacionGeneral: null
+        },
+        situacionLaboral: {
+          situacionLaboral: null
+        },
+        salud: {
+          salud: null,
+          eps: null,
+          tipoEps: null,
+          sisben: null,
+          nivelSisben: null
+        },
+        familia: {
+          jefeHogar: null,
+          otroJefeHogar: null,
+          comparteHogar: null,
+          familiares: [{
+            id: 1,
+            nombre: null,
+            edad: null,
+            estudio: null,
+            parentesco: null,
+            ocupacion: null,
+            telefono: null
+          }]
+        },
+        formacionRequerida: {
+          formacionRequerida: null,
+          otraFormacionRequerida: null
+        },
+        emprendimiento: {
+          idea: null,
+          funcionando: null,
+          tiempoFuncionamiento: null,
+          venta: null,
+          oportunidad: null,
+          otroOportunidad: null,
+          expectativa: null,
+          otroExpectativa: null,
+          nacimientoIdea: null,
+          otroNacimientoIdea: null,
+          formacion: null,
+          experiencia: null,
+          clientes: null,
+          recursos: null,
+          otroRecurso: null
+        },
+        fecha: null
+      }
+    };
   },
   destroyed: function destroyed() {
     this.setLoad(true);
   },
-  methods: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_8__.mapActions)(["setLoad"])),
+  methods: _objectSpread({
+    saveForm: function saveForm() {
+      this.$store.state.tempForm.id = this.formularios.length + 1;
+      this.$store.state.tempForm.fecha = new Date().toISOString().split("T")[0];
+      this.setFormulario(this.$store.state.tempForm);
+      this.resetForm();
+      this.showToast("Formulario guardado", "success");
+      this.$router.push({
+        name: "form.index"
+      });
+    }
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_8__.mapActions)(["setLoad", "setFormulario", "resetForm", "setAllForm"])),
   mounted: function mounted() {
+    this.setAllForm(this.formId);
     this.setLoad(false);
+  },
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_8__.mapState)(["tempForm", "formularios"])),
+  watch: {
+    form: {
+      handler: function handler(val) {
+        console.log(val);
+      },
+      deep: true
+    }
   }
 });
 
@@ -128,7 +301,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    value: {
+      type: Object,
+      required: true
+    }
+  },
+  watch: {
+    value: function value() {
+      this.$emit("input", this.value);
+    }
+  }
+});
 
 /***/ }),
 
@@ -346,7 +550,73 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    value: {
+      type: Object,
+      required: true
+    }
+  },
+  watch: {
+    value: function value() {
+      this.$emit("input", this.value);
+    }
+  }
+});
 
 /***/ }),
 
@@ -448,19 +718,50 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
-    return {
-      familiares: [{
-        id: 1
-      }]
-    };
+    return {};
   },
+  mounted: function mounted() {},
   methods: {
     addFamiliar: function addFamiliar() {
-      this.familiares.push({
-        id: this.familiares.length + 1
+      this.tempForm.familiares.push({
+        id: this.tempForm.familiares.length + 1
       });
+    }
+  },
+  props: {
+    value: {
+      type: Object,
+      required: true
+    }
+  },
+  watch: {
+    value: function value() {
+      this.$emit("input", this.value);
     }
   }
 });
@@ -495,7 +796,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    value: {
+      type: Object,
+      required: true
+    }
+  },
+  watch: {
+    value: function value() {
+      this.$emit("input", this.value);
+    }
+  }
+});
 
 /***/ }),
 
@@ -544,7 +864,217 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    value: {
+      type: Object,
+      required: true
+    }
+  },
+  watch: {
+    value: function value() {
+      this.$emit("input", this.value);
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/form/components/formularios/laboral/Laboral.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/form/components/formularios/laboral/Laboral.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    value: {
+      type: Object,
+      required: true
+    }
+  },
+  watch: {
+    value: function value() {
+      this.$emit("input", this.value);
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/form/components/formularios/salud/Salud.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/form/components/formularios/salud/Salud.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    value: {
+      type: Object,
+      required: true
+    }
+  },
+  watch: {
+    value: function value() {
+      this.$emit("input", this.value);
+    }
+  }
+});
 
 /***/ }),
 
@@ -863,7 +1393,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    value: {
+      type: Object,
+      required: true
+    }
+  },
+  watch: {
+    value: function value() {
+      this.$emit("input", this.value);
+    }
+  }
+});
 
 /***/ }),
 
@@ -1113,15 +1655,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _Laboral_vue_vue_type_template_id_18875088___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Laboral.vue?vue&type=template&id=18875088& */ "./resources/js/views/form/components/formularios/laboral/Laboral.vue?vue&type=template&id=18875088&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _Laboral_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Laboral.vue?vue&type=script&lang=js& */ "./resources/js/views/form/components/formularios/laboral/Laboral.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
 
 
 /* normalize component */
 ;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__.default)(
-  script,
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _Laboral_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
   _Laboral_vue_vue_type_template_id_18875088___WEBPACK_IMPORTED_MODULE_0__.render,
   _Laboral_vue_vue_type_template_id_18875088___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
@@ -1150,15 +1694,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _Salud_vue_vue_type_template_id_7be21240___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Salud.vue?vue&type=template&id=7be21240& */ "./resources/js/views/form/components/formularios/salud/Salud.vue?vue&type=template&id=7be21240&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _Salud_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Salud.vue?vue&type=script&lang=js& */ "./resources/js/views/form/components/formularios/salud/Salud.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
 
 
 /* normalize component */
 ;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__.default)(
-  script,
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _Salud_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
   _Salud_vue_vue_type_template_id_7be21240___WEBPACK_IMPORTED_MODULE_0__.render,
   _Salud_vue_vue_type_template_id_7be21240___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
@@ -1307,6 +1853,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_General_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./General.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/form/components/formularios/general/General.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_General_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/views/form/components/formularios/laboral/Laboral.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************!*\
+  !*** ./resources/js/views/form/components/formularios/laboral/Laboral.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Laboral_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Laboral.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/form/components/formularios/laboral/Laboral.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Laboral_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/views/form/components/formularios/salud/Salud.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/views/form/components/formularios/salud/Salud.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Salud_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Salud.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/form/components/formularios/salud/Salud.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Salud_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
@@ -1510,61 +2088,137 @@ var render = function() {
               _c(
                 "b-tab",
                 { attrs: { title: "Identificacion Usuario", active: "" } },
-                [_c("Usuario")],
+                [
+                  _c("Usuario", {
+                    attrs: { value: _vm.form.usuario },
+                    on: {
+                      input: function(nuevoUsuario) {
+                        _vm.form.usuario = nuevoUsuario
+                      }
+                    }
+                  })
+                ],
                 1
               ),
               _vm._v(" "),
               _c(
                 "b-tab",
                 { attrs: { title: "Formacion Academica" } },
-                [_c("Academico")],
+                [
+                  _c("Academico", {
+                    attrs: { value: _vm.form.formacionAcademica },
+                    on: {
+                      input: function(nuevaFormacionAcademica) {
+                        _vm.form.formacionAcademica = nuevaFormacionAcademica
+                      }
+                    }
+                  })
+                ],
                 1
               ),
               _vm._v(" "),
               _c(
                 "b-tab",
                 { attrs: { title: "Situacion General" } },
-                [_c("General")],
+                [
+                  _c("General", {
+                    attrs: { value: _vm.form.situacionGeneral },
+                    on: {
+                      input: function(situacionGeneral) {
+                        _vm.form.situacionGeneral = situacionGeneral
+                      }
+                    }
+                  })
+                ],
                 1
               ),
               _vm._v(" "),
               _c(
                 "b-tab",
                 { attrs: { title: "Situacion Laboral" } },
-                [_c("Laboral")],
+                [
+                  _c("Laboral", {
+                    attrs: { value: _vm.form.situacionLaboral },
+                    on: {
+                      input: function(situacionLaboral) {
+                        _vm.form.situacionLaboral = situacionLaboral
+                      }
+                    }
+                  })
+                ],
                 1
               ),
               _vm._v(" "),
               _c(
                 "b-tab",
                 { attrs: { title: "Programa de salud" } },
-                [_c("Salud")],
+                [
+                  _c("Salud", {
+                    attrs: { value: _vm.form.salud },
+                    on: {
+                      input: function(nuevaSalud) {
+                        _vm.form.salud = nuevaSalud
+                      }
+                    }
+                  })
+                ],
                 1
               ),
               _vm._v(" "),
               _c(
                 "b-tab",
                 { attrs: { title: "Informacion familiar" } },
-                [_c("Familia")],
+                [
+                  _c("Familia", {
+                    attrs: { value: _vm.form.familia },
+                    on: {
+                      input: function(nuevaFamilia) {
+                        _vm.form.familia = nuevaFamilia
+                      }
+                    }
+                  })
+                ],
                 1
               ),
               _vm._v(" "),
               _c(
                 "b-tab",
                 { attrs: { title: "Formacion requerida" } },
-                [_c("Formacion")],
+                [
+                  _c("Formacion", {
+                    attrs: { value: _vm.form.formacionRequerida },
+                    on: {
+                      input: function(nuevaFormacionRequerida) {
+                        _vm.form.formacionRequerida = nuevaFormacionRequerida
+                      }
+                    }
+                  })
+                ],
                 1
               ),
               _vm._v(" "),
               _c(
                 "b-tab",
                 { attrs: { title: "Emprendimiento" } },
-                [_c("Emprendimiento")],
+                [
+                  _c("Emprendimiento", {
+                    attrs: { value: _vm.form.emprendimiento },
+                    on: {
+                      input: function(nuevaEmprendimiento) {
+                        _vm.form.emprendimiento = nuevaEmprendimiento
+                      }
+                    }
+                  })
+                ],
                 1
               )
             ],
             1
-          )
+          ),
+          _vm._v(" "),
+          _c("b-button", { staticClass: "mt-3", on: { click: _vm.saveForm } }, [
+            _vm._v("Guardar")
+          ])
         ],
         1
       )
@@ -1597,7 +2251,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "b-card",
-    { staticClass: "overflow-auto", staticStyle: { height: "75vh" } },
+    { staticClass: "overflow-auto", staticStyle: { height: "65vh" } },
     [
       _c(
         "b-row",
@@ -1611,49 +2265,121 @@ var render = function() {
                 [
                   _c(
                     "b-form-radio",
-                    { attrs: { name: "estudio", value: "1" } },
+                    {
+                      attrs: { name: "estudio", value: "1" },
+                      model: {
+                        value: _vm.value.formacion,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "formacion", $$v)
+                        },
+                        expression: "value.formacion"
+                      }
+                    },
                     [_vm._v("Sin estudio")]
                   ),
                   _vm._v(" "),
                   _c(
                     "b-form-radio",
-                    { attrs: { name: "estudio", value: "2" } },
+                    {
+                      attrs: { name: "estudio", value: "2" },
+                      model: {
+                        value: _vm.value.formacion,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "formacion", $$v)
+                        },
+                        expression: "value.formacion"
+                      }
+                    },
                     [_vm._v("Primaria")]
                   ),
                   _vm._v(" "),
                   _c(
                     "b-form-radio",
-                    { attrs: { name: "estudio", value: "3" } },
+                    {
+                      attrs: { name: "estudio", value: "3" },
+                      model: {
+                        value: _vm.value.formacion,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "formacion", $$v)
+                        },
+                        expression: "value.formacion"
+                      }
+                    },
                     [_vm._v("Bachiller")]
                   ),
                   _vm._v(" "),
                   _c(
                     "b-form-radio",
-                    { attrs: { name: "estudio", value: "4" } },
+                    {
+                      attrs: { name: "estudio", value: "4" },
+                      model: {
+                        value: _vm.value.formacion,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "formacion", $$v)
+                        },
+                        expression: "value.formacion"
+                      }
+                    },
                     [_vm._v("Tecnologo")]
                   ),
                   _vm._v(" "),
                   _c(
                     "b-form-radio",
-                    { attrs: { name: "estudio", value: "5" } },
+                    {
+                      attrs: { name: "estudio", value: "5" },
+                      model: {
+                        value: _vm.value.formacion,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "formacion", $$v)
+                        },
+                        expression: "value.formacion"
+                      }
+                    },
                     [_vm._v("Tecnico")]
                   ),
                   _vm._v(" "),
                   _c(
                     "b-form-radio",
-                    { attrs: { name: "estudio", value: "6" } },
+                    {
+                      attrs: { name: "estudio", value: "6" },
+                      model: {
+                        value: _vm.value.formacion,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "formacion", $$v)
+                        },
+                        expression: "value.formacion"
+                      }
+                    },
                     [_vm._v("Universitario")]
                   ),
                   _vm._v(" "),
                   _c(
                     "b-form-radio",
-                    { attrs: { name: "estudio", value: "7" } },
+                    {
+                      attrs: { name: "estudio", value: "7" },
+                      model: {
+                        value: _vm.value.formacion,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "formacion", $$v)
+                        },
+                        expression: "value.formacion"
+                      }
+                    },
                     [_vm._v("Postgrado")]
                   ),
                   _vm._v(" "),
                   _c(
                     "b-form-radio",
-                    { attrs: { name: "estudio", value: "8" } },
+                    {
+                      attrs: { name: "estudio", value: "8" },
+                      model: {
+                        value: _vm.value.formacion,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "formacion", $$v)
+                        },
+                        expression: "value.formacion"
+                      }
+                    },
                     [_vm._v("Otro")]
                   )
                 ],
@@ -1670,7 +2396,18 @@ var render = function() {
               _c(
                 "b-form-group",
                 { attrs: { label: "¿Cual?" } },
-                [_c("b-form-input", { attrs: { type: "text" } })],
+                [
+                  _c("b-form-input", {
+                    attrs: { type: "text" },
+                    model: {
+                      value: _vm.value.otraFormacion,
+                      callback: function($$v) {
+                        _vm.$set(_vm.value, "otraFormacion", $$v)
+                      },
+                      expression: "value.otraFormacion"
+                    }
+                  })
+                ],
                 1
               )
             ],
@@ -1708,7 +2445,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "b-card",
-    { staticClass: "overflow-auto", staticStyle: { height: "75vh" } },
+    { staticClass: "overflow-auto", staticStyle: { height: "65vh" } },
     [
       _c(
         "b-row",
@@ -1730,7 +2467,17 @@ var render = function() {
               _c(
                 "b-form-group",
                 { attrs: { label: "¿Cual es su idea de negocio?" } },
-                [_c("b-form-textarea")],
+                [
+                  _c("b-form-textarea", {
+                    model: {
+                      value: _vm.value.idea,
+                      callback: function($$v) {
+                        _vm.$set(_vm.value, "idea", $$v)
+                      },
+                      expression: "value.idea"
+                    }
+                  })
+                ],
                 1
               )
             ],
@@ -1749,13 +2496,35 @@ var render = function() {
                   }
                 },
                 [
-                  _c("b-form-radio", { attrs: { name: "salud", value: "1" } }, [
-                    _vm._v("SI")
-                  ]),
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "salud", value: "1" },
+                      model: {
+                        value: _vm.value.funcionando,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "funcionando", $$v)
+                        },
+                        expression: "value.funcionando"
+                      }
+                    },
+                    [_vm._v("SI")]
+                  ),
                   _vm._v(" "),
-                  _c("b-form-radio", { attrs: { name: "salud", value: "2" } }, [
-                    _vm._v("NO")
-                  ])
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "salud", value: "2" },
+                      model: {
+                        value: _vm.value.funcionando,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "funcionando", $$v)
+                        },
+                        expression: "value.funcionando"
+                      }
+                    },
+                    [_vm._v("NO")]
+                  )
                 ],
                 1
               )
@@ -1775,7 +2544,18 @@ var render = function() {
                       "¿Que tiempo de funcionamiento tiene su unidad productiva?"
                   }
                 },
-                [_c("b-form-input", { attrs: { type: "text" } })],
+                [
+                  _c("b-form-input", {
+                    attrs: { type: "text" },
+                    model: {
+                      value: _vm.value.tiempoFuncionamiento,
+                      callback: function($$v) {
+                        _vm.$set(_vm.value, "tiempoFuncionamiento", $$v)
+                      },
+                      expression: "value.tiempoFuncionamiento"
+                    }
+                  })
+                ],
                 1
               )
             ],
@@ -1789,7 +2569,18 @@ var render = function() {
               _c(
                 "b-form-group",
                 { attrs: { label: "¿Valor de sus ventas actuales?" } },
-                [_c("b-form-input", { attrs: { type: "text" } })],
+                [
+                  _c("b-form-input", {
+                    attrs: { type: "text" },
+                    model: {
+                      value: _vm.value.venta,
+                      callback: function($$v) {
+                        _vm.$set(_vm.value, "venta", $$v)
+                      },
+                      expression: "value.venta"
+                    }
+                  })
+                ],
                 1
               )
             ],
@@ -1825,21 +2616,54 @@ var render = function() {
                   }
                 },
                 [
-                  _c("b-form-radio", { attrs: { name: "op", value: "1" } }, [
-                    _vm._v("No existe este negocio")
-                  ]),
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "op", value: "1" },
+                      model: {
+                        value: _vm.value.oportunidad,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "oportunidad", $$v)
+                        },
+                        expression: "value.oportunidad"
+                      }
+                    },
+                    [_vm._v("No existe este negocio")]
+                  ),
                   _vm._v(" "),
                   _c("b-form-radio", { attrs: { name: "op", value: "2" } }, [
                     _vm._v("Existe, pero no es suficiente")
                   ]),
                   _vm._v(" "),
-                  _c("b-form-radio", { attrs: { name: "op", value: "3" } }, [
-                    _vm._v("Experiencia adquirida")
-                  ]),
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "op", value: "3" },
+                      model: {
+                        value: _vm.value.oportunidad,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "oportunidad", $$v)
+                        },
+                        expression: "value.oportunidad"
+                      }
+                    },
+                    [_vm._v("Experiencia adquirida")]
+                  ),
                   _vm._v(" "),
-                  _c("b-form-radio", { attrs: { name: "op", value: "4" } }, [
-                    _vm._v("Otro")
-                  ])
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "op", value: "4" },
+                      model: {
+                        value: _vm.value.oportunidad,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "oportunidad", $$v)
+                        },
+                        expression: "value.oportunidad"
+                      }
+                    },
+                    [_vm._v("Otro")]
+                  )
                 ],
                 1
               )
@@ -1853,7 +2677,18 @@ var render = function() {
               _c(
                 "b-form-group",
                 { attrs: { label: "¿Cual?" } },
-                [_c("b-form-input", { attrs: { type: "text" } })],
+                [
+                  _c("b-form-input", {
+                    attrs: { type: "text" },
+                    model: {
+                      value: _vm.value.otroOportunidad,
+                      callback: function($$v) {
+                        _vm.$set(_vm.value, "otroOportunidad", $$v)
+                      },
+                      expression: "value.otroOportunidad"
+                    }
+                  })
+                ],
                 1
               )
             ],
@@ -1886,25 +2721,80 @@ var render = function() {
                   attrs: { label: "¿Cual es su expectativa con ese negocio?" }
                 },
                 [
-                  _c("b-form-radio", { attrs: { name: "ex", value: "1" } }, [
-                    _vm._v("Subsistir")
-                  ]),
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "ex", value: "1" },
+                      model: {
+                        value: _vm.value.expectativa,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "expectativa", $$v)
+                        },
+                        expression: "value.expectativa"
+                      }
+                    },
+                    [_vm._v("Subsistir")]
+                  ),
                   _vm._v(" "),
-                  _c("b-form-radio", { attrs: { name: "ex", value: "2" } }, [
-                    _vm._v("Ser independiente")
-                  ]),
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "ex", value: "2" },
+                      model: {
+                        value: _vm.value.expectativa,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "expectativa", $$v)
+                        },
+                        expression: "value.expectativa"
+                      }
+                    },
+                    [_vm._v("Ser independiente")]
+                  ),
                   _vm._v(" "),
-                  _c("b-form-radio", { attrs: { name: "ex", value: "3" } }, [
-                    _vm._v("Tener otros ingresos/ aumentar ingresos")
-                  ]),
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "ex", value: "3" },
+                      model: {
+                        value: _vm.value.expectativa,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "expectativa", $$v)
+                        },
+                        expression: "value.expectativa"
+                      }
+                    },
+                    [_vm._v("Tener otros ingresos/ aumentar ingresos")]
+                  ),
                   _vm._v(" "),
-                  _c("b-form-radio", { attrs: { name: "ex", value: "4" } }, [
-                    _vm._v("Generar empleo")
-                  ]),
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "ex", value: "4" },
+                      model: {
+                        value: _vm.value.expectativa,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "expectativa", $$v)
+                        },
+                        expression: "value.expectativa"
+                      }
+                    },
+                    [_vm._v("Generar empleo")]
+                  ),
                   _vm._v(" "),
-                  _c("b-form-radio", { attrs: { name: "ex", value: "5" } }, [
-                    _vm._v("Otro")
-                  ])
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "ex", value: "5" },
+                      model: {
+                        value: _vm.value.expectativa,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "expectativa", $$v)
+                        },
+                        expression: "value.expectativa"
+                      }
+                    },
+                    [_vm._v("Otro")]
+                  )
                 ],
                 1
               )
@@ -1918,7 +2808,18 @@ var render = function() {
               _c(
                 "b-form-group",
                 { attrs: { label: "¿Cual?" } },
-                [_c("b-form-input", { attrs: { type: "text" } })],
+                [
+                  _c("b-form-input", {
+                    attrs: { type: "text" },
+                    model: {
+                      value: _vm.value.otroExpectativa,
+                      callback: function($$v) {
+                        _vm.$set(_vm.value, "otroExpectativa", $$v)
+                      },
+                      expression: "value.otroExpectativa"
+                    }
+                  })
+                ],
                 1
               )
             ],
@@ -1949,29 +2850,95 @@ var render = function() {
                 "b-form-group",
                 { attrs: { label: "¿De donde nacio esa idea de negocio?" } },
                 [
-                  _c("b-form-radio", { attrs: { name: "na", value: "1" } }, [
-                    _vm._v("Iniciativa propia")
-                  ]),
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "na", value: "1" },
+                      model: {
+                        value: _vm.value.nacimientoIdea,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "nacimientoIdea", $$v)
+                        },
+                        expression: "value.nacimientoIdea"
+                      }
+                    },
+                    [_vm._v("Iniciativa propia")]
+                  ),
                   _vm._v(" "),
-                  _c("b-form-radio", { attrs: { name: "na", value: "2" } }, [
-                    _vm._v("Iniciativa de un amigo o familiar")
-                  ]),
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "na", value: "2" },
+                      model: {
+                        value: _vm.value.nacimientoIdea,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "nacimientoIdea", $$v)
+                        },
+                        expression: "value.nacimientoIdea"
+                      }
+                    },
+                    [_vm._v("Iniciativa de un amigo o familiar")]
+                  ),
                   _vm._v(" "),
-                  _c("b-form-radio", { attrs: { name: "na", value: "2" } }, [
-                    _vm._v("Influencia del entorno cercano")
-                  ]),
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "na", value: "2" },
+                      model: {
+                        value: _vm.value.nacimientoIdea,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "nacimientoIdea", $$v)
+                        },
+                        expression: "value.nacimientoIdea"
+                      }
+                    },
+                    [_vm._v("Influencia del entorno cercano")]
+                  ),
                   _vm._v(" "),
-                  _c("b-form-radio", { attrs: { name: "na", value: "2" } }, [
-                    _vm._v("Influencia de medios de comunicacion")
-                  ]),
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "na", value: "2" },
+                      model: {
+                        value: _vm.value.nacimientoIdea,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "nacimientoIdea", $$v)
+                        },
+                        expression: "value.nacimientoIdea"
+                      }
+                    },
+                    [_vm._v("Influencia de medios de comunicacion")]
+                  ),
                   _vm._v(" "),
-                  _c("b-form-radio", { attrs: { name: "na", value: "2" } }, [
-                    _vm._v("Continuar con la linea familiar")
-                  ]),
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "na", value: "2" },
+                      model: {
+                        value: _vm.value.nacimientoIdea,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "nacimientoIdea", $$v)
+                        },
+                        expression: "value.nacimientoIdea"
+                      }
+                    },
+                    [_vm._v("Continuar con la linea familiar")]
+                  ),
                   _vm._v(" "),
-                  _c("b-form-radio", { attrs: { name: "na", value: "2" } }, [
-                    _vm._v("Otro")
-                  ])
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "na", value: "2" },
+                      model: {
+                        value: _vm.value.nacimientoIdea,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "nacimientoIdea", $$v)
+                        },
+                        expression: "value.nacimientoIdea"
+                      }
+                    },
+                    [_vm._v("Otro")]
+                  )
                 ],
                 1
               )
@@ -1985,7 +2952,18 @@ var render = function() {
               _c(
                 "b-form-group",
                 { attrs: { label: "¿Cual?" } },
-                [_c("b-form-input", { attrs: { type: "text" } })],
+                [
+                  _c("b-form-input", {
+                    attrs: { type: "text" },
+                    model: {
+                      value: _vm.value.otroNacimientoIdea,
+                      callback: function($$v) {
+                        _vm.$set(_vm.value, "otroNacimientoIdea", $$v)
+                      },
+                      expression: "value.otroNacimientoIdea"
+                    }
+                  })
+                ],
                 1
               )
             ],
@@ -2016,21 +2994,65 @@ var render = function() {
                 "b-form-group",
                 { attrs: { label: "Formacion" } },
                 [
-                  _c("b-form-radio", { attrs: { name: "fo", value: "1" } }, [
-                    _vm._v("Ninguna o nula")
-                  ]),
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "fo", value: "1" },
+                      model: {
+                        value: _vm.value.formacion,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "formacion", $$v)
+                        },
+                        expression: "value.formacion"
+                      }
+                    },
+                    [_vm._v("Ninguna o nula")]
+                  ),
                   _vm._v(" "),
-                  _c("b-form-radio", { attrs: { name: "fo", value: "2" } }, [
-                    _vm._v("Muy basica o elemental")
-                  ]),
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "fo", value: "2" },
+                      model: {
+                        value: _vm.value.formacion,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "formacion", $$v)
+                        },
+                        expression: "value.formacion"
+                      }
+                    },
+                    [_vm._v("Muy basica o elemental")]
+                  ),
                   _vm._v(" "),
-                  _c("b-form-radio", { attrs: { name: "fo", value: "2" } }, [
-                    _vm._v("Media / Se defiende")
-                  ]),
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "fo", value: "3" },
+                      model: {
+                        value: _vm.value.formacion,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "formacion", $$v)
+                        },
+                        expression: "value.formacion"
+                      }
+                    },
+                    [_vm._v("Media / Se defiende")]
+                  ),
                   _vm._v(" "),
-                  _c("b-form-radio", { attrs: { name: "fo", value: "2" } }, [
-                    _vm._v("Profunda / Amplia")
-                  ])
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "fo", value: "4" },
+                      model: {
+                        value: _vm.value.formacion,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "formacion", $$v)
+                        },
+                        expression: "value.formacion"
+                      }
+                    },
+                    [_vm._v("Profunda / Amplia")]
+                  )
                 ],
                 1
               )
@@ -2046,21 +3068,65 @@ var render = function() {
                 "b-form-group",
                 { attrs: { label: "Experiencia" } },
                 [
-                  _c("b-form-radio", { attrs: { name: "fo", value: "1" } }, [
-                    _vm._v("Ninguna o nula")
-                  ]),
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "exp", value: "1" },
+                      model: {
+                        value: _vm.value.experiencia,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "experiencia", $$v)
+                        },
+                        expression: "value.experiencia"
+                      }
+                    },
+                    [_vm._v("Ninguna o nula")]
+                  ),
                   _vm._v(" "),
-                  _c("b-form-radio", { attrs: { name: "fo", value: "2" } }, [
-                    _vm._v("Muy basica o elemental")
-                  ]),
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "exp", value: "2" },
+                      model: {
+                        value: _vm.value.experiencia,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "experiencia", $$v)
+                        },
+                        expression: "value.experiencia"
+                      }
+                    },
+                    [_vm._v("Muy basica o elemental")]
+                  ),
                   _vm._v(" "),
-                  _c("b-form-radio", { attrs: { name: "fo", value: "2" } }, [
-                    _vm._v("Media / Se defiende")
-                  ]),
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "exp", value: "3" },
+                      model: {
+                        value: _vm.value.experiencia,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "experiencia", $$v)
+                        },
+                        expression: "value.experiencia"
+                      }
+                    },
+                    [_vm._v("Media / Se defiende")]
+                  ),
                   _vm._v(" "),
-                  _c("b-form-radio", { attrs: { name: "fo", value: "2" } }, [
-                    _vm._v("Profunda / Amplia")
-                  ])
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "exp", value: "4" },
+                      model: {
+                        value: _vm.value.experiencia,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "experiencia", $$v)
+                        },
+                        expression: "value.experiencia"
+                      }
+                    },
+                    [_vm._v("Profunda / Amplia")]
+                  )
                 ],
                 1
               )
@@ -2097,19 +3163,54 @@ var render = function() {
                   }
                 },
                 [
-                  _c("b-form-radio", { attrs: { name: "fo", value: "1" } }, [
-                    _vm._v("No los puede describir con claridad")
-                  ]),
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "ci", value: "1" },
+                      model: {
+                        value: _vm.value.clientes,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "clientes", $$v)
+                        },
+                        expression: "value.clientes"
+                      }
+                    },
+                    [_vm._v("No los puede describir con claridad")]
+                  ),
                   _vm._v(" "),
-                  _c("b-form-radio", { attrs: { name: "fo", value: "2" } }, [
-                    _vm._v(
-                      "Tiene alguna idea basica de las caracteristicas de sus\n          clientes"
-                    )
-                  ]),
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "ci", value: "2" },
+                      model: {
+                        value: _vm.value.clientes,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "clientes", $$v)
+                        },
+                        expression: "value.clientes"
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "Tiene alguna idea basica de las caracteristicas de sus\n          clientes"
+                      )
+                    ]
+                  ),
                   _vm._v(" "),
-                  _c("b-form-radio", { attrs: { name: "fo", value: "2" } }, [
-                    _vm._v("Tiene muy claro quienes serian sus clientes")
-                  ])
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "ci", value: "3" },
+                      model: {
+                        value: _vm.value.clientes,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "clientes", $$v)
+                        },
+                        expression: "value.clientes"
+                      }
+                    },
+                    [_vm._v("Tiene muy claro quienes serian sus clientes")]
+                  )
                 ],
                 1
               )
@@ -2143,29 +3244,95 @@ var render = function() {
                   attrs: { label: "¿Cuenta con algun recurso para su negocio?" }
                 },
                 [
-                  _c("b-form-radio", { attrs: { name: "fo", value: "1" } }, [
-                    _vm._v("Local")
-                  ]),
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "re", value: "1" },
+                      model: {
+                        value: _vm.value.recursos,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "recursos", $$v)
+                        },
+                        expression: "value.recursos"
+                      }
+                    },
+                    [_vm._v("Local")]
+                  ),
                   _vm._v(" "),
-                  _c("b-form-radio", { attrs: { name: "fo", value: "2" } }, [
-                    _vm._v("Dinero")
-                  ]),
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "re", value: "2" },
+                      model: {
+                        value: _vm.value.recursos,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "recursos", $$v)
+                        },
+                        expression: "value.recursos"
+                      }
+                    },
+                    [_vm._v("Dinero")]
+                  ),
                   _vm._v(" "),
-                  _c("b-form-radio", { attrs: { name: "fo", value: "2" } }, [
-                    _vm._v("Equipo")
-                  ]),
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "re", value: "2" },
+                      model: {
+                        value: _vm.value.recursos,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "recursos", $$v)
+                        },
+                        expression: "value.recursos"
+                      }
+                    },
+                    [_vm._v("Equipo")]
+                  ),
                   _vm._v(" "),
-                  _c("b-form-radio", { attrs: { name: "fo", value: "2" } }, [
-                    _vm._v("Personal")
-                  ]),
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "re", value: "2" },
+                      model: {
+                        value: _vm.value.recursos,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "recursos", $$v)
+                        },
+                        expression: "value.recursos"
+                      }
+                    },
+                    [_vm._v("Personal")]
+                  ),
                   _vm._v(" "),
-                  _c("b-form-radio", { attrs: { name: "fo", value: "2" } }, [
-                    _vm._v("Materia prima")
-                  ]),
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "re", value: "2" },
+                      model: {
+                        value: _vm.value.recursos,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "recursos", $$v)
+                        },
+                        expression: "value.recursos"
+                      }
+                    },
+                    [_vm._v("Materia prima")]
+                  ),
                   _vm._v(" "),
-                  _c("b-form-radio", { attrs: { name: "fo", value: "2" } }, [
-                    _vm._v("Conocimiento del negocio")
-                  ])
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "re", value: "2" },
+                      model: {
+                        value: _vm.value.recursos,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "recursos", $$v)
+                        },
+                        expression: "value.recursos"
+                      }
+                    },
+                    [_vm._v("Conocimiento del negocio")]
+                  )
                 ],
                 1
               )
@@ -2179,7 +3346,18 @@ var render = function() {
               _c(
                 "b-form-group",
                 { attrs: { label: "¿Cual?" } },
-                [_c("b-form-input", { attrs: { type: "text" } })],
+                [
+                  _c("b-form-input", {
+                    attrs: { type: "text" },
+                    model: {
+                      value: _vm.value.otroRecurso,
+                      callback: function($$v) {
+                        _vm.$set(_vm.value, "otroRecurso", $$v)
+                      },
+                      expression: "value.otroRecurso"
+                    }
+                  })
+                ],
                 1
               )
             ],
@@ -2217,7 +3395,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "b-card",
-    { staticClass: "overflow-auto", staticStyle: { height: "75vh" } },
+    { staticClass: "overflow-auto", staticStyle: { height: "65vh" } },
     [
       _c(
         "b-row",
@@ -2240,13 +3418,35 @@ var render = function() {
                         [_vm._v("-- Seleccione una opcion --")]
                       ),
                       _vm._v(" "),
-                      _c("b-form-select-option", { attrs: { value: "1" } }, [
-                        _vm._v("SI")
-                      ]),
+                      _c(
+                        "b-form-select-option",
+                        {
+                          attrs: { value: "1" },
+                          model: {
+                            value: _vm.value.comparteHogar,
+                            callback: function($$v) {
+                              _vm.$set(_vm.value, "comparteHogar", $$v)
+                            },
+                            expression: "value.comparteHogar"
+                          }
+                        },
+                        [_vm._v("SI")]
+                      ),
                       _vm._v(" "),
-                      _c("b-form-select-option", { attrs: { value: "2" } }, [
-                        _vm._v("NO")
-                      ])
+                      _c(
+                        "b-form-select-option",
+                        {
+                          attrs: { value: "2" },
+                          model: {
+                            value: _vm.value.comparteHogar,
+                            callback: function($$v) {
+                              _vm.$set(_vm.value, "comparteHogar", $$v)
+                            },
+                            expression: "value.comparteHogar"
+                          }
+                        },
+                        [_vm._v("NO")]
+                      )
                     ],
                     1
                   )
@@ -2275,45 +3475,155 @@ var render = function() {
                         [_vm._v("-- Seleccione una opcion --")]
                       ),
                       _vm._v(" "),
-                      _c("b-form-select-option", { attrs: { value: "1" } }, [
-                        _vm._v("Usted")
-                      ]),
+                      _c(
+                        "b-form-select-option",
+                        {
+                          attrs: { value: "1" },
+                          model: {
+                            value: _vm.value.jefeHogar,
+                            callback: function($$v) {
+                              _vm.$set(_vm.value, "jefeHogar", $$v)
+                            },
+                            expression: "value.jefeHogar"
+                          }
+                        },
+                        [_vm._v("Usted")]
+                      ),
                       _vm._v(" "),
-                      _c("b-form-select-option", { attrs: { value: "2" } }, [
-                        _vm._v("Padre")
-                      ]),
+                      _c(
+                        "b-form-select-option",
+                        {
+                          attrs: { value: "2" },
+                          model: {
+                            value: _vm.value.jefeHogar,
+                            callback: function($$v) {
+                              _vm.$set(_vm.value, "jefeHogar", $$v)
+                            },
+                            expression: "value.jefeHogar"
+                          }
+                        },
+                        [_vm._v("Padre")]
+                      ),
                       _vm._v(" "),
-                      _c("b-form-select-option", { attrs: { value: "3" } }, [
-                        _vm._v("Madre")
-                      ]),
+                      _c(
+                        "b-form-select-option",
+                        {
+                          attrs: { value: "3" },
+                          model: {
+                            value: _vm.value.jefeHogar,
+                            callback: function($$v) {
+                              _vm.$set(_vm.value, "jefeHogar", $$v)
+                            },
+                            expression: "value.jefeHogar"
+                          }
+                        },
+                        [_vm._v("Madre")]
+                      ),
                       _vm._v(" "),
-                      _c("b-form-select-option", { attrs: { value: "4" } }, [
-                        _vm._v("Hermano")
-                      ]),
+                      _c(
+                        "b-form-select-option",
+                        {
+                          attrs: { value: "4" },
+                          model: {
+                            value: _vm.value.jefeHogar,
+                            callback: function($$v) {
+                              _vm.$set(_vm.value, "jefeHogar", $$v)
+                            },
+                            expression: "value.jefeHogar"
+                          }
+                        },
+                        [_vm._v("Hermano")]
+                      ),
                       _vm._v(" "),
-                      _c("b-form-select-option", { attrs: { value: "5" } }, [
-                        _vm._v("Pareja o conyuge")
-                      ]),
+                      _c(
+                        "b-form-select-option",
+                        {
+                          attrs: { value: "5" },
+                          model: {
+                            value: _vm.value.jefeHogar,
+                            callback: function($$v) {
+                              _vm.$set(_vm.value, "jefeHogar", $$v)
+                            },
+                            expression: "value.jefeHogar"
+                          }
+                        },
+                        [_vm._v("Pareja o conyuge")]
+                      ),
                       _vm._v(" "),
-                      _c("b-form-select-option", { attrs: { value: "6" } }, [
-                        _vm._v("Abuelo(a)")
-                      ]),
+                      _c(
+                        "b-form-select-option",
+                        {
+                          attrs: { value: "6" },
+                          model: {
+                            value: _vm.value.jefeHogar,
+                            callback: function($$v) {
+                              _vm.$set(_vm.value, "jefeHogar", $$v)
+                            },
+                            expression: "value.jefeHogar"
+                          }
+                        },
+                        [_vm._v("Abuelo(a)")]
+                      ),
                       _vm._v(" "),
-                      _c("b-form-select-option", { attrs: { value: "7" } }, [
-                        _vm._v("Tio(a)")
-                      ]),
+                      _c(
+                        "b-form-select-option",
+                        {
+                          attrs: { value: "7" },
+                          model: {
+                            value: _vm.value.jefeHogar,
+                            callback: function($$v) {
+                              _vm.$set(_vm.value, "jefeHogar", $$v)
+                            },
+                            expression: "value.jefeHogar"
+                          }
+                        },
+                        [_vm._v("Tio(a)")]
+                      ),
                       _vm._v(" "),
-                      _c("b-form-select-option", { attrs: { value: "8" } }, [
-                        _vm._v("Primos")
-                      ]),
+                      _c(
+                        "b-form-select-option",
+                        {
+                          attrs: { value: "8" },
+                          model: {
+                            value: _vm.value.jefeHogar,
+                            callback: function($$v) {
+                              _vm.$set(_vm.value, "jefeHogar", $$v)
+                            },
+                            expression: "value.jefeHogar"
+                          }
+                        },
+                        [_vm._v("Primos")]
+                      ),
                       _vm._v(" "),
-                      _c("b-form-select-option", { attrs: { value: "8" } }, [
-                        _vm._v("Otros parientes")
-                      ]),
+                      _c(
+                        "b-form-select-option",
+                        {
+                          attrs: { value: "8" },
+                          model: {
+                            value: _vm.value.jefeHogar,
+                            callback: function($$v) {
+                              _vm.$set(_vm.value, "jefeHogar", $$v)
+                            },
+                            expression: "value.jefeHogar"
+                          }
+                        },
+                        [_vm._v("Otros parientes")]
+                      ),
                       _vm._v(" "),
-                      _c("b-form-select-option", { attrs: { value: "8" } }, [
-                        _vm._v("Otro")
-                      ])
+                      _c(
+                        "b-form-select-option",
+                        {
+                          attrs: { value: "8" },
+                          model: {
+                            value: _vm.value.jefeHogar,
+                            callback: function($$v) {
+                              _vm.$set(_vm.value, "jefeHogar", $$v)
+                            },
+                            expression: "value.jefeHogar"
+                          }
+                        },
+                        [_vm._v("Otro")]
+                      )
                     ],
                     1
                   )
@@ -2331,7 +3641,18 @@ var render = function() {
               _c(
                 "b-form-group",
                 { attrs: { label: "¿Cual?" } },
-                [_c("b-form-input", { attrs: { type: "text" } })],
+                [
+                  _c("b-form-input", {
+                    attrs: { type: "text" },
+                    model: {
+                      value: _vm.value.otroJefeHogar,
+                      callback: function($$v) {
+                        _vm.$set(_vm.value, "otroJefeHogar", $$v)
+                      },
+                      expression: "value.otroJefeHogar"
+                    }
+                  })
+                ],
                 1
               )
             ],
@@ -2341,7 +3662,7 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _vm._l(_vm.familiares, function(familiar) {
+      _vm._l(_vm.value.familiares, function(familiar) {
         return _c(
           "b-row",
           { key: familiar.id },
@@ -2503,7 +3824,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "b-card",
-    { staticClass: "overflow-auto", staticStyle: { height: "75vh" } },
+    { staticClass: "overflow-auto", staticStyle: { height: "65vh" } },
     [
       _c(
         "b-row",
@@ -2515,7 +3836,18 @@ var render = function() {
               _c(
                 "b-form-group",
                 { attrs: { label: "Cual" } },
-                [_c("b-form-input", { attrs: { type: "text" } })],
+                [
+                  _c("b-form-input", {
+                    attrs: { type: "text" },
+                    model: {
+                      value: _vm.value.formacionRequerida,
+                      callback: function($$v) {
+                        _vm.$set(_vm.value, "formacionRequerida", $$v)
+                      },
+                      expression: "value.formacionRequerida"
+                    }
+                  })
+                ],
                 1
               )
             ],
@@ -2529,7 +3861,18 @@ var render = function() {
               _c(
                 "b-form-group",
                 { attrs: { label: "Otra" } },
-                [_c("b-form-input", { attrs: { type: "text" } })],
+                [
+                  _c("b-form-input", {
+                    attrs: { type: "text" },
+                    model: {
+                      value: _vm.value.otraFormacionRequerida,
+                      callback: function($$v) {
+                        _vm.$set(_vm.value, "otraFormacionRequerida", $$v)
+                      },
+                      expression: "value.otraFormacionRequerida"
+                    }
+                  })
+                ],
                 1
               )
             ],
@@ -2567,7 +3910,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "b-card",
-    { staticClass: "overflow-auto", staticStyle: { height: "75vh" } },
+    { staticClass: "overflow-auto", staticStyle: { height: "65vh" } },
     [
       _c(
         "b-row",
@@ -2581,67 +3924,166 @@ var render = function() {
                 [
                   _c(
                     "b-form-radio",
-                    { attrs: { name: "general", value: "1" } },
+                    {
+                      attrs: { name: "general", value: "1" },
+                      model: {
+                        value: _vm.value.situacionGeneral,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "situacionGeneral", $$v)
+                        },
+                        expression: "value.situacionGeneral"
+                      }
+                    },
                     [_vm._v("Victima de la violencia")]
                   ),
                   _vm._v(" "),
                   _c(
                     "b-form-radio",
-                    { attrs: { name: "general", value: "2" } },
+                    {
+                      attrs: { name: "general", value: "2" },
+                      model: {
+                        value: _vm.value.situacionGeneral,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "situacionGeneral", $$v)
+                        },
+                        expression: "value.situacionGeneral"
+                      }
+                    },
                     [_vm._v("Reinsertado")]
                   ),
                   _vm._v(" "),
                   _c(
                     "b-form-radio",
-                    { attrs: { name: "general", value: "3" } },
+                    {
+                      attrs: { name: "general", value: "3" },
+                      model: {
+                        value: _vm.value.situacionGeneral,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "situacionGeneral", $$v)
+                        },
+                        expression: "value.situacionGeneral"
+                      }
+                    },
                     [_vm._v("Adulto mayor")]
                   ),
                   _vm._v(" "),
                   _c(
                     "b-form-radio",
-                    { attrs: { name: "general", value: "4" } },
+                    {
+                      attrs: { name: "general", value: "4" },
+                      model: {
+                        value: _vm.value.situacionGeneral,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "situacionGeneral", $$v)
+                        },
+                        expression: "value.situacionGeneral"
+                      }
+                    },
                     [_vm._v("En situacion de pobreza")]
                   ),
                   _vm._v(" "),
                   _c(
                     "b-form-radio",
-                    { attrs: { name: "general", value: "5" } },
+                    {
+                      attrs: { name: "general", value: "5" },
+                      model: {
+                        value: _vm.value.situacionGeneral,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "situacionGeneral", $$v)
+                        },
+                        expression: "value.situacionGeneral"
+                      }
+                    },
                     [_vm._v("Desmovilizado")]
                   ),
                   _vm._v(" "),
                   _c(
                     "b-form-radio",
-                    { attrs: { name: "general", value: "6" } },
+                    {
+                      attrs: { name: "general", value: "6" },
+                      model: {
+                        value: _vm.value.situacionGeneral,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "situacionGeneral", $$v)
+                        },
+                        expression: "value.situacionGeneral"
+                      }
+                    },
                     [_vm._v("Madre/Padre")]
                   ),
                   _vm._v(" "),
                   _c(
                     "b-form-radio",
-                    { attrs: { name: "general", value: "7" } },
+                    {
+                      attrs: { name: "general", value: "7" },
+                      model: {
+                        value: _vm.value.situacionGeneral,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "situacionGeneral", $$v)
+                        },
+                        expression: "value.situacionGeneral"
+                      }
+                    },
                     [_vm._v("Cabeza de hogar")]
                   ),
                   _vm._v(" "),
                   _c(
                     "b-form-radio",
-                    { attrs: { name: "general", value: "8" } },
+                    {
+                      attrs: { name: "general", value: "8" },
+                      model: {
+                        value: _vm.value.situacionGeneral,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "situacionGeneral", $$v)
+                        },
+                        expression: "value.situacionGeneral"
+                      }
+                    },
                     [_vm._v("Afectado por ola invernal")]
                   ),
                   _vm._v(" "),
                   _c(
                     "b-form-radio",
-                    { attrs: { name: "general", value: "9" } },
+                    {
+                      attrs: { name: "general", value: "9" },
+                      model: {
+                        value: _vm.value.situacionGeneral,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "situacionGeneral", $$v)
+                        },
+                        expression: "value.situacionGeneral"
+                      }
+                    },
                     [_vm._v("Joven en situacion de riesgo")]
                   ),
                   _vm._v(" "),
                   _c(
                     "b-form-radio",
-                    { attrs: { name: "general", value: "10" } },
+                    {
+                      attrs: { name: "general", value: "10" },
+                      model: {
+                        value: _vm.value.situacionGeneral,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "situacionGeneral", $$v)
+                        },
+                        expression: "value.situacionGeneral"
+                      }
+                    },
                     [_vm._v("Poblacion no ulnerable")]
                   ),
                   _vm._v(" "),
                   _c(
                     "b-form-radio",
-                    { attrs: { name: "general", value: "11" } },
+                    {
+                      attrs: { name: "general", value: "11" },
+                      model: {
+                        value: _vm.value.situacionGeneral,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "situacionGeneral", $$v)
+                        },
+                        expression: "value.situacionGeneral"
+                      }
+                    },
                     [_vm._v("Ninguna de las anteriores")]
                   )
                 ],
@@ -2682,7 +4124,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "b-card",
-    { staticClass: "overflow-auto", staticStyle: { height: "75vh" } },
+    { staticClass: "overflow-auto", staticStyle: { height: "65vh" } },
     [
       _c(
         "b-row",
@@ -2696,37 +4138,91 @@ var render = function() {
                 [
                   _c(
                     "b-form-radio",
-                    { attrs: { name: "trabajo", value: "1" } },
+                    {
+                      attrs: { name: "trabajo", value: "1" },
+                      model: {
+                        value: _vm.value.situacionLaboral,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "situacionLaboral", $$v)
+                        },
+                        expression: "value.situacionLaboral"
+                      }
+                    },
                     [_vm._v("Empleado")]
                   ),
                   _vm._v(" "),
                   _c(
                     "b-form-radio",
-                    { attrs: { name: "trabajo", value: "2" } },
+                    {
+                      attrs: { name: "trabajo", value: "2" },
+                      model: {
+                        value: _vm.value.situacionLaboral,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "situacionLaboral", $$v)
+                        },
+                        expression: "value.situacionLaboral"
+                      }
+                    },
                     [_vm._v("Desempleado")]
                   ),
                   _vm._v(" "),
                   _c(
                     "b-form-radio",
-                    { attrs: { name: "trabajo", value: "3" } },
+                    {
+                      attrs: { name: "trabajo", value: "3" },
+                      model: {
+                        value: _vm.value.situacionLaboral,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "situacionLaboral", $$v)
+                        },
+                        expression: "value.situacionLaboral"
+                      }
+                    },
                     [_vm._v("Independiente")]
                   ),
                   _vm._v(" "),
                   _c(
                     "b-form-radio",
-                    { attrs: { name: "trabajo", value: "4" } },
+                    {
+                      attrs: { name: "trabajo", value: "4" },
+                      model: {
+                        value: _vm.value.situacionLaboral,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "situacionLaboral", $$v)
+                        },
+                        expression: "value.situacionLaboral"
+                      }
+                    },
                     [_vm._v("Vendedor informal")]
                   ),
                   _vm._v(" "),
                   _c(
                     "b-form-radio",
-                    { attrs: { name: "trabajo", value: "5" } },
+                    {
+                      attrs: { name: "trabajo", value: "5" },
+                      model: {
+                        value: _vm.value.situacionLaboral,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "situacionLaboral", $$v)
+                        },
+                        expression: "value.situacionLaboral"
+                      }
+                    },
                     [_vm._v("Mototrabajador")]
                   ),
                   _vm._v(" "),
                   _c(
                     "b-form-radio",
-                    { attrs: { name: "trabajo", value: "6" } },
+                    {
+                      attrs: { name: "trabajo", value: "6" },
+                      model: {
+                        value: _vm.value.situacionLaboral,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "situacionLaboral", $$v)
+                        },
+                        expression: "value.situacionLaboral"
+                      }
+                    },
                     [_vm._v("Otro")]
                   )
                 ],
@@ -2767,7 +4263,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "b-card",
-    { staticClass: "overflow-auto", staticStyle: { height: "75vh" } },
+    { staticClass: "overflow-auto", staticStyle: { height: "65vh" } },
     [
       _c(
         "b-row",
@@ -2779,17 +4275,50 @@ var render = function() {
               _c(
                 "b-form-group",
                 [
-                  _c("b-form-radio", { attrs: { name: "salud", value: "1" } }, [
-                    _vm._v("Regimen contributivo")
-                  ]),
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "salud", value: "1" },
+                      model: {
+                        value: _vm.value.salud,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "salud", $$v)
+                        },
+                        expression: "value.salud"
+                      }
+                    },
+                    [_vm._v("Regimen contributivo")]
+                  ),
                   _vm._v(" "),
-                  _c("b-form-radio", { attrs: { name: "salud", value: "2" } }, [
-                    _vm._v("Regimen subsidiado")
-                  ]),
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "salud", value: "2" },
+                      model: {
+                        value: _vm.value.salud,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "salud", $$v)
+                        },
+                        expression: "value.salud"
+                      }
+                    },
+                    [_vm._v("Regimen subsidiado")]
+                  ),
                   _vm._v(" "),
-                  _c("b-form-radio", { attrs: { name: "salud", value: "3" } }, [
-                    _vm._v("Ninguno")
-                  ])
+                  _c(
+                    "b-form-radio",
+                    {
+                      attrs: { name: "salud", value: "3" },
+                      model: {
+                        value: _vm.value.salud,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "salud", $$v)
+                        },
+                        expression: "value.salud"
+                      }
+                    },
+                    [_vm._v("Ninguno")]
+                  )
                 ],
                 1
               )
@@ -2810,7 +4339,18 @@ var render = function() {
               _c(
                 "b-form-group",
                 { attrs: { label: "EPS" } },
-                [_c("b-form-input", { attrs: { type: "text" } })],
+                [
+                  _c("b-form-input", {
+                    attrs: { type: "text" },
+                    model: {
+                      value: _vm.value.eps,
+                      callback: function($$v) {
+                        _vm.$set(_vm.value, "eps", $$v)
+                      },
+                      expression: "value.eps"
+                    }
+                  })
+                ],
                 1
               )
             ],
@@ -2827,7 +4367,16 @@ var render = function() {
                 [
                   _c(
                     "b-form-select",
-                    { staticClass: "mb-3" },
+                    {
+                      staticClass: "mb-3",
+                      model: {
+                        value: _vm.value.tipoEps,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "tipoEps", $$v)
+                        },
+                        expression: "value.tipoEps"
+                      }
+                    },
                     [
                       _c(
                         "b-form-select-option",
@@ -2862,7 +4411,16 @@ var render = function() {
                 [
                   _c(
                     "b-form-select",
-                    { staticClass: "mb-3" },
+                    {
+                      staticClass: "mb-3",
+                      model: {
+                        value: _vm.value.sisben,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "sisben", $$v)
+                        },
+                        expression: "value.sisben"
+                      }
+                    },
                     [
                       _c(
                         "b-form-select-option",
@@ -2894,7 +4452,18 @@ var render = function() {
               _c(
                 "b-form-group",
                 { attrs: { label: "Nivel" } },
-                [_c("b-form-input", { attrs: { type: "text" } })],
+                [
+                  _c("b-form-input", {
+                    attrs: { type: "text" },
+                    model: {
+                      value: _vm.value.nivelSisben,
+                      callback: function($$v) {
+                        _vm.$set(_vm.value, "nivelSisben", $$v)
+                      },
+                      expression: "value.nivelSisben"
+                    }
+                  })
+                ],
                 1
               )
             ],
@@ -2932,7 +4501,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "b-card",
-    { staticClass: "overflow-auto", staticStyle: { height: "75vh" } },
+    { staticClass: "overflow-auto", staticStyle: { height: "65vh" } },
     [
       _c(
         "b-row",

@@ -6,3 +6,10 @@ export function getCurrentUser() {
         method: "get"
     });
 }
+
+export function getAllUsers() {
+    return request({
+        url: `user`,
+        method: "get"
+    });
+}
