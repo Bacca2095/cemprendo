@@ -3,55 +3,35 @@
     <b-row>
       <b-col sm="auto" md="6" lg="4" align-self="start">
         <b-form-group label="¿Vive con alguien mas?">
-          <b-form-select class="mb-3">
+          <b-form-select v-model="value.comparteHogar" class="mb-3">
             <b-form-select-option :value="null" disabled
               >-- Seleccione una opcion --</b-form-select-option
             >
-            <b-form-select-option v-model="value.comparteHogar" value="1"
-              >SI</b-form-select-option
-            >
-            <b-form-select-option v-model="value.comparteHogar" value="2"
-              >NO</b-form-select-option
-            >
+            <b-form-select-option value="1">SI</b-form-select-option>
+            <b-form-select-option value="2">NO</b-form-select-option>
           </b-form-select>
         </b-form-group>
       </b-col>
       <b-col sm="auto" md="6" lg="4" align-self="start">
         <b-form-group label="¿Quien es el jefe del hogar?">
-          <b-form-select class="mb-3">
+          <b-form-select v-model="value.jefeHogar" class="mb-3">
             <b-form-select-option :value="null" disabled
               >-- Seleccione una opcion --</b-form-select-option
             >
-            <b-form-select-option v-model="value.jefeHogar" value="1"
-              >Usted</b-form-select-option
-            >
-            <b-form-select-option v-model="value.jefeHogar" value="2"
-              >Padre</b-form-select-option
-            >
-            <b-form-select-option v-model="value.jefeHogar" value="3"
-              >Madre</b-form-select-option
-            >
-            <b-form-select-option v-model="value.jefeHogar" value="4"
-              >Hermano</b-form-select-option
-            >
-            <b-form-select-option v-model="value.jefeHogar" value="5"
+            <b-form-select-option value="1">Usted</b-form-select-option>
+            <b-form-select-option value="2">Padre</b-form-select-option>
+            <b-form-select-option value="3">Madre</b-form-select-option>
+            <b-form-select-option value="4">Hermano</b-form-select-option>
+            <b-form-select-option value="5"
               >Pareja o conyuge</b-form-select-option
             >
-            <b-form-select-option v-model="value.jefeHogar" value="6"
-              >Abuelo(a)</b-form-select-option
-            >
-            <b-form-select-option v-model="value.jefeHogar" value="7"
-              >Tio(a)</b-form-select-option
-            >
-            <b-form-select-option v-model="value.jefeHogar" value="8"
-              >Primos</b-form-select-option
-            >
-            <b-form-select-option v-model="value.jefeHogar" value="8"
+            <b-form-select-option value="6">Abuelo(a)</b-form-select-option>
+            <b-form-select-option value="7">Tio(a)</b-form-select-option>
+            <b-form-select-option value="8">Primos</b-form-select-option>
+            <b-form-select-option value="8"
               >Otros parientes</b-form-select-option
             >
-            <b-form-select-option v-model="value.jefeHogar" value="8"
-              >Otro</b-form-select-option
-            >
+            <b-form-select-option value="8">Otro</b-form-select-option>
           </b-form-select>
         </b-form-group>
       </b-col>

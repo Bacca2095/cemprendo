@@ -27,8 +27,9 @@
     <b-row align-h="center">
       <b-col sm="auto">
         <base-table
-          :items="items"
+          :items="provider"
           :fields="fields"
+          :busy="busy"
           ref="form"
           @row-selected="onRowSelected"
           @row-dblclicked="onRowDblClicked"
@@ -68,16 +69,18 @@ export default {
     return {
       page: 1,
       size: 50,
+      forms: [],
       totalRows: 0,
       items: [],
       fields: [
-        { key: "nombre", label: "Nombre" },
-        { key: "documento", label: "Documento" },
-        { key: "idea", label: "Emprendimiento" },
+        { key: "usuario.nombre", label: "Nombre" },
+        { key: "usuario.documento", label: "Documento" },
+        { key: "emprendimiento.idea", label: "Emprendimiento" },
         { key: "fecha", label: "Fecha de solicitud" },
       ],
       form: null,
       showActions: false,
+      busy: false,
     };
   },
   destroyed() {
@@ -85,6 +88,10 @@ export default {
   },
   methods: {
     ...mapActions(["setLoad", "deleteForm", "setAllForm"]),
+    provider() {
+      this.totalRows = this.formularios.length;
+      return this.formularios;
+    },
     onRowSelected(items) {
       if (items.length > 0) {
         this.form = items[0];
@@ -107,17 +114,31 @@ export default {
       }
     },
     deleteById() {
-      this.deleteForm(this.form.id);
-      this.$refs.form.$refs.table.refresh();
+      if (this.form.id) {
+        this.$swal({
+          title: `¿Desea eliminar el formulario?`,
+          icon: "question",
+          showCancelButton: true,
+        }).then((result) => {
+          if (result.value) {
+            this.deleteForm(this.form.id).finally(() => {
+              this.showToast("Se elimino el formulario", "success");
+            });
+          }
+        });
+      }
     },
   },
   mounted() {
     this.setLoad(false);
-    this.items.push(...this.formularios);
-    this.totalRows = this.items.length;
   },
   computed: {
     ...mapState(["formularios"]),
+  },
+  watch: {
+    formularios(val) {
+      this.$refs.form.$refs.table.refresh();
+    },
   },
 };
 </script>

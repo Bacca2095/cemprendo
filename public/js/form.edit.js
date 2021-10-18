@@ -119,6 +119,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -238,30 +241,38 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.setLoad(true);
   },
   methods: _objectSpread({
-    saveForm: function saveForm() {
-      this.$store.state.tempForm.id = this.formularios.length + 1;
-      this.$store.state.tempForm.fecha = new Date().toISOString().split("T")[0];
-      this.setFormulario(this.$store.state.tempForm);
-      this.resetForm();
-      this.showToast("Formulario guardado", "success");
+    save: function save() {
+      this.form.id = this.formularios.length + 1;
+      this.form.fecha = new Date().toISOString().split("T")[0];
+      this.saveForm(this.form);
+      this.showToast("Se ha guardado el formulario", "success");
+      this.$router.push({
+        name: "form.index"
+      });
+    },
+    edit: function edit() {
+      console.log(this.form);
+      this.editForm(this.form);
+      this.showToast("Se han guardado los cambios en el formulario", "success");
       this.$router.push({
         name: "form.index"
       });
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_8__.mapActions)(["setLoad", "setFormulario", "resetForm", "setAllForm"])),
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_8__.mapActions)(["setLoad", "saveForm", "editForm"])),
   mounted: function mounted() {
-    this.setAllForm(this.formId);
+    var _this = this;
+
+    if (this.formId) {
+      this.formularios.map(function (form) {
+        if (_this.formId === form.id) {
+          _this.form = form;
+        }
+      });
+    }
+
     this.setLoad(false);
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_8__.mapState)(["tempForm", "formularios"])),
-  watch: {
-    form: {
-      handler: function handler(val) {
-        console.log(val);
-      },
-      deep: true
-    }
-  }
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_8__.mapState)(["formularios"]))
 });
 
 /***/ }),
@@ -631,26 +642,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2216,9 +2207,17 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("b-button", { staticClass: "mt-3", on: { click: _vm.saveForm } }, [
-            _vm._v("Guardar")
-          ])
+          !_vm.formId
+            ? _c("b-button", { staticClass: "mt-3", on: { click: _vm.save } }, [
+                _vm._v("Guardar")
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.formId
+            ? _c("b-button", { staticClass: "mt-3", on: { click: _vm.edit } }, [
+                _vm._v("Guardar cambios")
+              ])
+            : _vm._e()
         ],
         1
       )
@@ -3410,7 +3409,16 @@ var render = function() {
                 [
                   _c(
                     "b-form-select",
-                    { staticClass: "mb-3" },
+                    {
+                      staticClass: "mb-3",
+                      model: {
+                        value: _vm.value.comparteHogar,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "comparteHogar", $$v)
+                        },
+                        expression: "value.comparteHogar"
+                      }
+                    },
                     [
                       _c(
                         "b-form-select-option",
@@ -3418,35 +3426,13 @@ var render = function() {
                         [_vm._v("-- Seleccione una opcion --")]
                       ),
                       _vm._v(" "),
-                      _c(
-                        "b-form-select-option",
-                        {
-                          attrs: { value: "1" },
-                          model: {
-                            value: _vm.value.comparteHogar,
-                            callback: function($$v) {
-                              _vm.$set(_vm.value, "comparteHogar", $$v)
-                            },
-                            expression: "value.comparteHogar"
-                          }
-                        },
-                        [_vm._v("SI")]
-                      ),
+                      _c("b-form-select-option", { attrs: { value: "1" } }, [
+                        _vm._v("SI")
+                      ]),
                       _vm._v(" "),
-                      _c(
-                        "b-form-select-option",
-                        {
-                          attrs: { value: "2" },
-                          model: {
-                            value: _vm.value.comparteHogar,
-                            callback: function($$v) {
-                              _vm.$set(_vm.value, "comparteHogar", $$v)
-                            },
-                            expression: "value.comparteHogar"
-                          }
-                        },
-                        [_vm._v("NO")]
-                      )
+                      _c("b-form-select-option", { attrs: { value: "2" } }, [
+                        _vm._v("NO")
+                      ])
                     ],
                     1
                   )
@@ -3467,7 +3453,16 @@ var render = function() {
                 [
                   _c(
                     "b-form-select",
-                    { staticClass: "mb-3" },
+                    {
+                      staticClass: "mb-3",
+                      model: {
+                        value: _vm.value.jefeHogar,
+                        callback: function($$v) {
+                          _vm.$set(_vm.value, "jefeHogar", $$v)
+                        },
+                        expression: "value.jefeHogar"
+                      }
+                    },
                     [
                       _c(
                         "b-form-select-option",
@@ -3475,155 +3470,45 @@ var render = function() {
                         [_vm._v("-- Seleccione una opcion --")]
                       ),
                       _vm._v(" "),
-                      _c(
-                        "b-form-select-option",
-                        {
-                          attrs: { value: "1" },
-                          model: {
-                            value: _vm.value.jefeHogar,
-                            callback: function($$v) {
-                              _vm.$set(_vm.value, "jefeHogar", $$v)
-                            },
-                            expression: "value.jefeHogar"
-                          }
-                        },
-                        [_vm._v("Usted")]
-                      ),
+                      _c("b-form-select-option", { attrs: { value: "1" } }, [
+                        _vm._v("Usted")
+                      ]),
                       _vm._v(" "),
-                      _c(
-                        "b-form-select-option",
-                        {
-                          attrs: { value: "2" },
-                          model: {
-                            value: _vm.value.jefeHogar,
-                            callback: function($$v) {
-                              _vm.$set(_vm.value, "jefeHogar", $$v)
-                            },
-                            expression: "value.jefeHogar"
-                          }
-                        },
-                        [_vm._v("Padre")]
-                      ),
+                      _c("b-form-select-option", { attrs: { value: "2" } }, [
+                        _vm._v("Padre")
+                      ]),
                       _vm._v(" "),
-                      _c(
-                        "b-form-select-option",
-                        {
-                          attrs: { value: "3" },
-                          model: {
-                            value: _vm.value.jefeHogar,
-                            callback: function($$v) {
-                              _vm.$set(_vm.value, "jefeHogar", $$v)
-                            },
-                            expression: "value.jefeHogar"
-                          }
-                        },
-                        [_vm._v("Madre")]
-                      ),
+                      _c("b-form-select-option", { attrs: { value: "3" } }, [
+                        _vm._v("Madre")
+                      ]),
                       _vm._v(" "),
-                      _c(
-                        "b-form-select-option",
-                        {
-                          attrs: { value: "4" },
-                          model: {
-                            value: _vm.value.jefeHogar,
-                            callback: function($$v) {
-                              _vm.$set(_vm.value, "jefeHogar", $$v)
-                            },
-                            expression: "value.jefeHogar"
-                          }
-                        },
-                        [_vm._v("Hermano")]
-                      ),
+                      _c("b-form-select-option", { attrs: { value: "4" } }, [
+                        _vm._v("Hermano")
+                      ]),
                       _vm._v(" "),
-                      _c(
-                        "b-form-select-option",
-                        {
-                          attrs: { value: "5" },
-                          model: {
-                            value: _vm.value.jefeHogar,
-                            callback: function($$v) {
-                              _vm.$set(_vm.value, "jefeHogar", $$v)
-                            },
-                            expression: "value.jefeHogar"
-                          }
-                        },
-                        [_vm._v("Pareja o conyuge")]
-                      ),
+                      _c("b-form-select-option", { attrs: { value: "5" } }, [
+                        _vm._v("Pareja o conyuge")
+                      ]),
                       _vm._v(" "),
-                      _c(
-                        "b-form-select-option",
-                        {
-                          attrs: { value: "6" },
-                          model: {
-                            value: _vm.value.jefeHogar,
-                            callback: function($$v) {
-                              _vm.$set(_vm.value, "jefeHogar", $$v)
-                            },
-                            expression: "value.jefeHogar"
-                          }
-                        },
-                        [_vm._v("Abuelo(a)")]
-                      ),
+                      _c("b-form-select-option", { attrs: { value: "6" } }, [
+                        _vm._v("Abuelo(a)")
+                      ]),
                       _vm._v(" "),
-                      _c(
-                        "b-form-select-option",
-                        {
-                          attrs: { value: "7" },
-                          model: {
-                            value: _vm.value.jefeHogar,
-                            callback: function($$v) {
-                              _vm.$set(_vm.value, "jefeHogar", $$v)
-                            },
-                            expression: "value.jefeHogar"
-                          }
-                        },
-                        [_vm._v("Tio(a)")]
-                      ),
+                      _c("b-form-select-option", { attrs: { value: "7" } }, [
+                        _vm._v("Tio(a)")
+                      ]),
                       _vm._v(" "),
-                      _c(
-                        "b-form-select-option",
-                        {
-                          attrs: { value: "8" },
-                          model: {
-                            value: _vm.value.jefeHogar,
-                            callback: function($$v) {
-                              _vm.$set(_vm.value, "jefeHogar", $$v)
-                            },
-                            expression: "value.jefeHogar"
-                          }
-                        },
-                        [_vm._v("Primos")]
-                      ),
+                      _c("b-form-select-option", { attrs: { value: "8" } }, [
+                        _vm._v("Primos")
+                      ]),
                       _vm._v(" "),
-                      _c(
-                        "b-form-select-option",
-                        {
-                          attrs: { value: "8" },
-                          model: {
-                            value: _vm.value.jefeHogar,
-                            callback: function($$v) {
-                              _vm.$set(_vm.value, "jefeHogar", $$v)
-                            },
-                            expression: "value.jefeHogar"
-                          }
-                        },
-                        [_vm._v("Otros parientes")]
-                      ),
+                      _c("b-form-select-option", { attrs: { value: "8" } }, [
+                        _vm._v("Otros parientes")
+                      ]),
                       _vm._v(" "),
-                      _c(
-                        "b-form-select-option",
-                        {
-                          attrs: { value: "8" },
-                          model: {
-                            value: _vm.value.jefeHogar,
-                            callback: function($$v) {
-                              _vm.$set(_vm.value, "jefeHogar", $$v)
-                            },
-                            expression: "value.jefeHogar"
-                          }
-                        },
-                        [_vm._v("Otro")]
-                      )
+                      _c("b-form-select-option", { attrs: { value: "8" } }, [
+                        _vm._v("Otro")
+                      ])
                     ],
                     1
                   )

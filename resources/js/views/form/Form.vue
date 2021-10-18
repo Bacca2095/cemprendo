@@ -87,7 +87,10 @@
         </b-tab>
       </b-tabs>
 
-      <b-button @click="saveForm" class="mt-3">Guardar</b-button>
+      <b-button @click="save" v-if="!formId" class="mt-3">Guardar</b-button>
+      <b-button @click="edit" v-if="formId" class="mt-3"
+        >Guardar cambios</b-button
+      >
     </b-form>
   </b-container>
 </template>
@@ -207,33 +210,38 @@ export default {
     this.setLoad(true);
   },
   methods: {
-    saveForm() {
-      this.$store.state.tempForm.id = this.formularios.length + 1;
-      this.$store.state.tempForm.fecha = new Date().toISOString().split("T")[0];
-      this.setFormulario(this.$store.state.tempForm);
-      this.resetForm();
-      this.showToast("Formulario guardado", "success");
+    save() {
+      this.form.id = this.formularios.length + 1;
+      this.form.fecha = new Date().toISOString().split("T")[0];
+      this.saveForm(this.form);
+      this.showToast("Se ha guardado el formulario", "success");
       this.$router.push({
         name: "form.index",
       });
     },
-    ...mapActions(["setLoad", "setFormulario", "resetForm", "setAllForm"]),
+    edit() {
+      console.log(this.form);
+      this.editForm(this.form);
+      this.showToast("Se han guardado los cambios en el formulario", "success");
+      this.$router.push({
+        name: "form.index",
+      });
+    },
+    ...mapActions(["setLoad", "saveForm", "editForm"]),
   },
 
   mounted() {
-    this.setAllForm(this.formId);
+    if (this.formId) {
+      this.formularios.map((form) => {
+        if (this.formId === form.id) {
+          this.form = form;
+        }
+      });
+    }
     this.setLoad(false);
   },
   computed: {
-    ...mapState(["tempForm", "formularios"]),
-  },
-  watch: {
-    form: {
-      handler(val) {
-        console.log(val);
-      },
-      deep: true,
-    },
+    ...mapState(["formularios"]),
   },
 };
 </script>

@@ -89,24 +89,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _components_button_ButtonIcon_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/button/ButtonIcon.vue */ "./resources/js/components/button/ButtonIcon.vue");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -178,29 +167,35 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       page: 1,
       size: 50,
+      forms: [],
       totalRows: 0,
       items: [],
       fields: [{
-        key: "nombre",
+        key: "usuario.nombre",
         label: "Nombre"
       }, {
-        key: "documento",
+        key: "usuario.documento",
         label: "Documento"
       }, {
-        key: "idea",
+        key: "emprendimiento.idea",
         label: "Emprendimiento"
       }, {
         key: "fecha",
         label: "Fecha de solicitud"
       }],
       form: null,
-      showActions: false
+      showActions: false,
+      busy: false
     };
   },
   destroyed: function destroyed() {
     this.setLoad(true);
   },
   methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)(["setLoad", "deleteForm", "setAllForm"])), {}, {
+    provider: function provider() {
+      this.totalRows = this.formularios.length;
+      return this.formularios;
+    },
     onRowSelected: function onRowSelected(items) {
       if (items.length > 0) {
         this.form = items[0];
@@ -225,20 +220,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     deleteById: function deleteById() {
-      this.deleteForm(this.form.id);
-      this.$refs.form.$refs.table.refresh();
+      var _this = this;
+
+      if (this.form.id) {
+        this.$swal({
+          title: "\xBFDesea eliminar el formulario?",
+          icon: "question",
+          showCancelButton: true
+        }).then(function (result) {
+          if (result.value) {
+            _this.deleteForm(_this.form.id)["finally"](function () {
+              _this.showToast("Se elimino el formulario", "success");
+            });
+          }
+        });
+      }
     }
   }),
   mounted: function mounted() {
-    var _this$items;
-
     this.setLoad(false);
-
-    (_this$items = this.items).push.apply(_this$items, _toConsumableArray(this.formularios));
-
-    this.totalRows = this.items.length;
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)(["formularios"]))
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)(["formularios"])),
+  watch: {
+    formularios: function formularios(val) {
+      this.$refs.form.$refs.table.refresh();
+    }
+  }
 });
 
 /***/ }),
@@ -631,7 +638,11 @@ var render = function() {
             [
               _c("base-table", {
                 ref: "form",
-                attrs: { items: _vm.items, fields: _vm.fields },
+                attrs: {
+                  items: _vm.provider,
+                  fields: _vm.fields,
+                  busy: _vm.busy
+                },
                 on: {
                   "row-selected": _vm.onRowSelected,
                   "row-dblclicked": _vm.onRowDblClicked

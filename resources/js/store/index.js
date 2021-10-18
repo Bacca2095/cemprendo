@@ -14,158 +14,6 @@ const store = new Vuex.Store({
         load: false,
         user: null,
         token: null,
-        tempForm: {
-            id: null,
-            nombre: null,
-            nacimiento: null,
-            genero: null,
-            tipoDocumento: null,
-            documento: null,
-            fechaExpedicion: null,
-            lugarExpedicion: null,
-            libretaMilitar: null,
-            distrito: null,
-            anio: null,
-            categoria: null,
-            licencia: null,
-            categoriaLicencia: null,
-            tieneVehiculo: null,
-            tipoVehiculo: null,
-            estadoCivil: null,
-            direccion: null,
-            barrio: null,
-            comuna: null,
-            estrato: null,
-            celular: null,
-            email: null,
-            segundaLengua: null,
-            tarjetaProfesional: null,
-            discapacidad: null,
-            tipoDiscapacidad: null,
-            personasCargo: null,
-            totalCargo: null,
-            parentesco: null,
-            desplazado: null,
-            rupd: null,
-            beneficiario: null,
-            formacion: null,
-            otraFormacion: null,
-            situacionGeneral: null,
-            situacionLaboral: null,
-            salud: null,
-            eps: null,
-            tipoEps: null,
-            sisben: null,
-            nivelSisben: null,
-            jefeHogar: null,
-            otroJefeHogar: null,
-            comparteHogar: null,
-            familiares: [
-                {
-                    id: 1,
-                    nombre: null,
-                    edad: null,
-                    estudio: null,
-                    parentesco: null,
-                    ocupacion: null,
-                    telefono: null
-                }
-            ],
-            formacionRequerida: null,
-            otraFormacionRequerida: null,
-            idea: null,
-            funcionando: null,
-            tiempoFuncionamiento: null,
-            venta: null,
-            oportunidad: null,
-            otroOportunidad: null,
-            expectativa: null,
-            otroExpectativa: null,
-            nacimientoIdea: null,
-            otroNacimientoIdea: null,
-            formacion: null,
-            experiencia: null,
-            clientes: null,
-            recursos: null,
-            otroRecurso: null,
-            fecha: null
-        },
-        emptyForm: {
-            id: null,
-            nombre: null,
-            nacimiento: null,
-            genero: null,
-            tipoDocumento: null,
-            documento: null,
-            fechaExpedicion: null,
-            lugarExpedicion: null,
-            libretaMilitar: null,
-            distrito: null,
-            anio: null,
-            categoria: null,
-            licencia: null,
-            categoriaLicencia: null,
-            tieneVehiculo: null,
-            tipoVehiculo: null,
-            estadoCivil: null,
-            direccion: null,
-            barrio: null,
-            comuna: null,
-            estrato: null,
-            celular: null,
-            email: null,
-            segundaLengua: null,
-            tarjetaProfesional: null,
-            discapacidad: null,
-            tipoDiscapacidad: null,
-            personasCargo: null,
-            totalCargo: null,
-            parentesco: null,
-            desplazado: null,
-            rupd: null,
-            beneficiario: null,
-            formacion: null,
-            otraFormacion: null,
-            situacionGeneral: null,
-            situacionLaboral: null,
-            salud: null,
-            eps: null,
-            tipoEps: null,
-            sisben: null,
-            nivelSisben: null,
-            jefeHogar: null,
-            otroJefeHogar: null,
-            comparteHogar: null,
-            familiares: [
-                {
-                    id: 1,
-                    nombre: null,
-                    edad: null,
-                    estudio: null,
-                    parentesco: null,
-                    ocupacion: null,
-                    telefono: null
-                }
-            ],
-            formacionRequerida: null,
-            otraFormacionRequerida: null,
-            idea: null,
-            funcionando: null,
-            tiempoFuncionamiento: null,
-            venta: null,
-            oportunidad: null,
-            otroOportunidad: null,
-            expectativa: null,
-            otroExpectativa: null,
-            nacimientoIdea: null,
-            otroNacimientoIdea: null,
-            formacion: null,
-            experiencia: null,
-            clientes: null,
-            recursos: null,
-            otroRecurso: null,
-            fecha: null
-        },
         formularios: []
     },
     mutations: {
@@ -178,27 +26,14 @@ const store = new Vuex.Store({
         setToken(state, data) {
             state.token = data;
         },
-        setForm(state, { key, value }) {
-            state.tempForm[key] = value;
-        },
-        setAllForm(state, id) {
-            state.formularios.map(form => {
-                if (form.id === id) {
-                    const keys = Object.keys(form);
-                    keys.map(key => {
-                        Vue.set(state.tempForm, key, form[key]);
-                    });
-                }
-            });
-        },
-        setFormulario(state, data) {
+        saveForm(state, data) {
             state.formularios.push(data);
         },
-        resetForm(state) {
-            const keys = Object.keys(state.tempForm);
-
-            keys.map(key => {
-                state.tempForm[key] = state.emptyForm[key];
+        editForm(state, data) {
+            state.formularios.find((form, index) => {
+                if (form.id == data.id) {
+                    state.formularios[index] = data;
+                }
             });
         },
         deleteForm(state, id) {
@@ -248,17 +83,11 @@ const store = new Vuex.Store({
                     });
             });
         },
-        setForm({ commit }, { key, value }) {
-            commit("setForm", { key, value });
+        saveForm({ commit }, data) {
+            commit("saveForm", data);
         },
-        setFormulario({ commit }, data) {
-            commit("setFormulario", data);
-        },
-        setAllForm({ commit }, data) {
-            commit("setAllForm", data);
-        },
-        resetForm({ commit }) {
-            commit("resetForm");
+        editForm({ commit }, data) {
+            commit("editForm", data);
         },
         deleteForm({ commit }, id) {
             commit("deleteForm", id);

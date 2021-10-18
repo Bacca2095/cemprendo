@@ -60,15 +60,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     variant: {
       type: String,
       "default": "primary"
+    }
+  },
+  methods: {
+    refresh: function refresh() {
+      this.$refs.table.refresh();
     }
   }
 });
@@ -216,9 +217,7 @@ var render = function() {
                 fn: function() {
                   return [
                     _c("h4", { staticClass: "text-muted text-center" }, [
-                      _vm._v(
-                        "\n            No hay datos para mostrar\n        "
-                      )
+                      _vm._v("No hay datos para mostrar")
                     ])
                   ]
                 },
