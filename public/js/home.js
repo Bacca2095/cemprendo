@@ -134,11 +134,7 @@ var render = function() {
   return _c(
     "b-container",
     { staticClass: "background" },
-    [
-      _c("b-img", {
-        attrs: { src: "/images/background.png", fluid: "", height: "100" }
-      })
-    ],
+    [_c("b-img", { attrs: { src: "/images/background.png", fluid: "" } })],
     1
   )
 }

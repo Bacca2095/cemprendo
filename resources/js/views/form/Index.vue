@@ -23,7 +23,7 @@
             <ButtonIcon variant="danger" icon="remove" @click="deleteById()"
           /></b-col>
           <b-col class="text-center" v-if="showActions">
-            <ButtonIcon icon="doc"
+            <ButtonIcon icon="doc" @click="exportPDF"
           /></b-col>
         </b-row>
       </b-col>
@@ -67,6 +67,7 @@
 </template>
 <script>
 import { mapActions, mapState } from "vuex";
+import { jsPDF } from "jspdf";
 import ButtonIcon from "../../components/button/ButtonIcon.vue";
 export default {
   components: { ButtonIcon },
@@ -119,7 +120,7 @@ export default {
             })
           : this.formularios;
 
-      this.totalRows = this.formularios.length;
+      this.totalRows = data.length;
       return data;
     },
 
@@ -158,6 +159,67 @@ export default {
           }
         });
       }
+    },
+    exportPDF() {
+      var doc = new jsPDF("p", "pt");
+      doc.text("Formulario", 40, 40);
+      let xAxis = 50,
+        yAxis = 50;
+
+      this.formularios.map((form, index) => {
+        if (form.id === this.form.id) {
+          doc.text(form.emprendimiento.idea, 200, 40);
+          doc.setFontSize(9);
+          const keys = Object.keys(form);
+          keys.map((key, index) => {
+            if (
+              (typeof form[key] === "object" ||
+                typeof form[key] === "function") &&
+              form[key] !== null
+            ) {
+              const keysNested = Object.keys(form[key]);
+              keysNested.map((keyNested, indexNested) => {
+                if (indexNested % 2 === 0 && index !== 0) {
+                  doc.setFont(undefined, "bold");
+                  doc.text(
+                    this.toSentence(keyNested) + " :",
+                    xAxis + 210,
+                    yAxis
+                  );
+                  doc.setFont(undefined, "normal");
+                  doc.text(form[key][keyNested] + "", xAxis + 310, yAxis);
+                } else {
+                  const y = (yAxis += 30);
+                  doc.setFont(undefined, "bold");
+                  doc.text(this.toSentence(keyNested) + " :", xAxis, y);
+                  doc.setFont(undefined, "normal");
+                  doc.text(form[key][keyNested] + "", xAxis + 120, y);
+                }
+              });
+            } else {
+              if (index % 2 === 0 && index !== 0) {
+                doc.setFont(undefined, "bold");
+                doc.text(this.toSentence(key) + " :", xAxis + 210, yAxis);
+                doc.setFont(undefined, "normal");
+                doc.text(form[key] + "", xAxis + 310, yAxis);
+              } else {
+                const y = (yAxis += 30);
+                doc.setFont(undefined, "bold");
+                doc.text(this.toSentence(key) + " :", xAxis, y);
+                doc.setFont(undefined, "normal");
+                doc.text(form[key] + "", xAxis + 120, y);
+              }
+            }
+          });
+        }
+      });
+
+      doc.save("todos.pdf");
+    },
+    toSentence(key) {
+      const result = key.replace(/([A-Z])/g, " $1");
+      const final = result.charAt(0).toUpperCase() + result.slice(1);
+      return final;
     },
   },
   mounted() {

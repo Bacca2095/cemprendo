@@ -16,4 +16,7 @@ mix.js("resources/js/app.js", "public/js")
     .extract(["vue"])
     .version()
     .sass("resources/sass/app.scss", "public/css")
-    .version();
+    .version()
+    .options({
+        legacyNodePolyfills: false
+    });

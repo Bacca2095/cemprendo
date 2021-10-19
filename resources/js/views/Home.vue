@@ -1,6 +1,6 @@
 <template>
   <b-container class="background">
-    <b-img src="/images/background.png" fluid height="100" />
+    <b-img src="/images/background.png" fluid />
   </b-container>
 </template>
 <script>
