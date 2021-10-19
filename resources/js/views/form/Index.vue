@@ -3,7 +3,11 @@
     <b-row align-self="center" class="mt-4">
       <b-col><h1>Formularios</h1></b-col>
       <b-col align-self="center" sm="auto">
-        <b-form-input type="search" placeholder="Buscar"></b-form-input>
+        <b-form-input
+          type="search"
+          v-model="filter"
+          placeholder="Buscar"
+        ></b-form-input>
       </b-col>
       <b-col align-self="center" lg="auto" class="ml-auto text-center">
         <b-row align-h="center">
@@ -31,6 +35,7 @@
           :fields="fields"
           :busy="busy"
           ref="form"
+          :filter="filter"
           @row-selected="onRowSelected"
           @row-dblclicked="onRowDblClicked"
         ></base-table>
@@ -81,6 +86,8 @@ export default {
       form: null,
       showActions: false,
       busy: false,
+      filter: "",
+      filterOn: ["usuario.nombre", "usuario.documento", "emprendimiento.idea"],
     };
   },
   destroyed() {
@@ -89,9 +96,33 @@ export default {
   methods: {
     ...mapActions(["setLoad", "deleteForm", "setAllForm"]),
     provider() {
+      let data =
+        this.filter.length > 0
+          ? this.formularios.filter((form) => {
+              if (
+                form.emprendimiento.idea
+                  ? form.emprendimiento.idea
+                      .toLowerCase()
+                      .includes(this.filter.toLowerCase())
+                  : false || form.usuario.nombre
+                  ? form.usuario.nombre
+                      .toLowerCase()
+                      .includes(this.filter.toLowerCase())
+                  : false || form.usuario.documento
+                  ? form.usuario.documento
+                      .toLowerCase()
+                      .includes(this.filter.toLowerCase())
+                  : false
+              ) {
+                return form;
+              }
+            })
+          : this.formularios;
+
       this.totalRows = this.formularios.length;
-      return this.formularios;
+      return data;
     },
+
     onRowSelected(items) {
       if (items.length > 0) {
         this.form = items[0];

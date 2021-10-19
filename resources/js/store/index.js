@@ -95,7 +95,7 @@ const store = new Vuex.Store({
     },
     plugins: [
         createPersistedState({
-            key: "cemprendo",
+            key: "cemprendo-test",
             storage: {
                 getItem: key => ls.get(key),
                 setItem: (key, value) => ls.set(key, value),

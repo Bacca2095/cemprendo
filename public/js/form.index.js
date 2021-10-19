@@ -157,6 +157,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -185,7 +190,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }],
       form: null,
       showActions: false,
-      busy: false
+      busy: false,
+      filter: "",
+      filterOn: ["usuario.nombre", "usuario.documento", "emprendimiento.idea"]
     };
   },
   destroyed: function destroyed() {
@@ -193,8 +200,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)(["setLoad", "deleteForm", "setAllForm"])), {}, {
     provider: function provider() {
+      var _this = this;
+
+      var data = this.filter.length > 0 ? this.formularios.filter(function (form) {
+        if (form.emprendimiento.idea ? form.emprendimiento.idea.toLowerCase().includes(_this.filter.toLowerCase()) :  false || form.usuario.nombre ? form.usuario.nombre.toLowerCase().includes(_this.filter.toLowerCase()) :  false || form.usuario.documento ? form.usuario.documento.toLowerCase().includes(_this.filter.toLowerCase()) : false) {
+          return form;
+        }
+      }) : this.formularios;
       this.totalRows = this.formularios.length;
-      return this.formularios;
+      return data;
     },
     onRowSelected: function onRowSelected(items) {
       if (items.length > 0) {
@@ -220,7 +234,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     deleteById: function deleteById() {
-      var _this = this;
+      var _this2 = this;
 
       if (this.form.id) {
         this.$swal({
@@ -229,8 +243,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           showCancelButton: true
         }).then(function (result) {
           if (result.value) {
-            _this.deleteForm(_this.form.id)["finally"](function () {
-              _this.showToast("Se elimino el formulario", "success");
+            _this2.deleteForm(_this2.form.id)["finally"](function () {
+              _this2.showToast("Se elimino el formulario", "success");
             });
           }
         });
@@ -543,7 +557,14 @@ var render = function() {
             { attrs: { "align-self": "center", sm: "auto" } },
             [
               _c("b-form-input", {
-                attrs: { type: "search", placeholder: "Buscar" }
+                attrs: { type: "search", placeholder: "Buscar" },
+                model: {
+                  value: _vm.filter,
+                  callback: function($$v) {
+                    _vm.filter = $$v
+                  },
+                  expression: "filter"
+                }
               })
             ],
             1
@@ -641,7 +662,8 @@ var render = function() {
                 attrs: {
                   items: _vm.provider,
                   fields: _vm.fields,
-                  busy: _vm.busy
+                  busy: _vm.busy,
+                  filter: _vm.filter
                 },
                 on: {
                   "row-selected": _vm.onRowSelected,
