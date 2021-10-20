@@ -101,19 +101,9 @@ export default {
         this.filter.length > 0
           ? this.formularios.filter((form) => {
               if (
-                form.emprendimiento.idea
-                  ? form.emprendimiento.idea
-                      .toLowerCase()
-                      .includes(this.filter.toLowerCase())
-                  : false || form.usuario.nombre
-                  ? form.usuario.nombre
-                      .toLowerCase()
-                      .includes(this.filter.toLowerCase())
-                  : false || form.usuario.documento
-                  ? form.usuario.documento
-                      .toLowerCase()
-                      .includes(this.filter.toLowerCase())
-                  : false
+                form.emprendimiento.idea.includes(this.filter) ||
+                form.usuario.nombre.includes(this.filter) ||
+                form.usuario.documento.includes(this.filter)
               ) {
                 return form;
               }

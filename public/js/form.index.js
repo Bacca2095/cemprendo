@@ -236,7 +236,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       var data = this.filter.length > 0 ? this.formularios.filter(function (form) {
-        if (form.emprendimiento.idea ? form.emprendimiento.idea.toLowerCase().includes(_this.filter.toLowerCase()) :  false || form.usuario.nombre ? form.usuario.nombre.toLowerCase().includes(_this.filter.toLowerCase()) :  false || form.usuario.documento ? form.usuario.documento.toLowerCase().includes(_this.filter.toLowerCase()) : false) {
+        if (form.emprendimiento.idea.includes(_this.filter) || form.usuario.nombre.includes(_this.filter) || form.usuario.documento.includes(_this.filter)) {
           return form;
         }
       }) : this.formularios;
@@ -290,9 +290,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       doc.text("Formulario", 40, 40);
       var xAxis = 50,
           yAxis = 50;
+      var nombre = "";
       this.formularios.map(function (form, index) {
         if (form.id === _this3.form.id) {
-          doc.text(form.emprendimiento.idea, 200, 40);
+          nombre = form.emprendimiento.idea;
+          doc.text(nombre, 200, 40);
           doc.setFontSize(9);
           var keys = Object.keys(form);
           keys.map(function (key, index) {
@@ -329,7 +331,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           });
         }
       });
-      doc.save("todos.pdf");
+      doc.save("formulario-".concat(nombre.toLowerCase().replace(" ", "-"), ".pdf"));
     },
     toSentence: function toSentence(key) {
       var result = key.replace(/([A-Z])/g, " $1");
