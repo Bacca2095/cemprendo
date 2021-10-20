@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Traits\ApiResponser;
 use Illuminate\Support\Facades\Log;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -43,7 +44,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $user = new User();
+            $user->name = $request->name;
+            $user->status = $request->status;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
+            $user->save();
+            return $this->success($user, "Se guardo el usuario correctamente", 201);
+        } catch (\Throwable $th) {
+            return $this->error($th, "Error al guardar el usuario", 500);
+        }
     }
 
     /**
@@ -54,7 +65,12 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            $user = User::findOrFail($id);
+            return $this->success($user, "Consulta exitosa", 200);
+        } catch (\Throwable $th) {
+            return $this->error($th, $th->message, 500);
+        }
     }
 
     /**
@@ -65,7 +81,6 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
     }
 
     /**
@@ -77,7 +92,19 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $user = User::findOrFail($id);
+            $user->name = $request->name;
+            $user->status = $request->status;
+            $user->email = $request->email;
+            if (!empty($request->password)) {
+                $user->password = Hash::make($request->password);
+            }
+            $user->save();
+            return $this->success($user, "Se edito el usuario correctamente", 200);
+        } catch (\Throwable $th) {
+            return $this->error($th, "Error al editar el usuario", 500);
+        }
     }
 
     /**
@@ -88,7 +115,13 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $user = User::findOrFail($id);
+            $user->delete();
+            return $this->success($user, "Se elimino el usuario correctamente", 200);
+        } catch (\Throwable $th) {
+            return $this->error($th, "Error al eliminar el usuario", 500);
+        }
     }
 
     public function currentUser()

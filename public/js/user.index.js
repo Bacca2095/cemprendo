@@ -143,6 +143,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -164,7 +171,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, {
         key: "status",
         label: "Estado"
-      }]
+      }],
+      user: null,
+      showActions: false
     };
   },
   destroyed: function destroyed() {
@@ -180,6 +189,48 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       })["catch"](function (err) {
         return [];
       });
+    },
+    deleteById: function deleteById() {
+      var _this2 = this;
+
+      if (this.user.id) {
+        this.$swal({
+          title: "\xBFDesea eliminar el usuario?",
+          icon: "question",
+          showCancelButton: true
+        }).then(function (result) {
+          if (result.value) {
+            (0,_api_user__WEBPACK_IMPORTED_MODULE_1__.deleteUser)(_this2.user.id).then(function () {
+              _this2.showToast("Se elimino el usuario", "success");
+            })["catch"](function (err) {
+              _this2.showToast("Ocurrio un error al eliminar el usuario", "error");
+            });
+          }
+        });
+      }
+    },
+    onRowSelected: function onRowSelected(items) {
+      if (items.length > 0) {
+        this.user = items[0];
+        this.showActions = true;
+      } else {
+        this.user = null;
+        this.showActions = false;
+      }
+    },
+    edit: function edit() {
+      if (this.user) {
+        this.$router.push({
+          name: "user.edit",
+          params: {
+            userId: this.user.id
+          }
+        });
+      }
+    },
+    onRowDblClicked: function onRowDblClicked(item) {
+      this.user = item;
+      this.edit();
     }
   }),
   mounted: function mounted() {
@@ -206,7 +257,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.btn-sm[data-v-7962ab2d] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 40px;\n  width: 40px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.btn-sm[data-v-7962ab2d] {\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  height: 40px;\r\n  width: 40px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -499,23 +550,33 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _c(
-                    "b-col",
-                    { staticClass: "text-center" },
-                    [_c("ButtonIcon", { attrs: { icon: "edit" } })],
-                    1
-                  ),
+                  _vm.showActions
+                    ? _c(
+                        "b-col",
+                        { staticClass: "text-center" },
+                        [
+                          _c("ButtonIcon", {
+                            attrs: { icon: "edit" },
+                            on: { click: _vm.edit }
+                          })
+                        ],
+                        1
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
-                  _c(
-                    "b-col",
-                    { staticClass: "text-center" },
-                    [
-                      _c("ButtonIcon", {
-                        attrs: { variant: "danger", icon: "remove" }
-                      })
-                    ],
-                    1
-                  )
+                  _vm.showActions
+                    ? _c(
+                        "b-col",
+                        { staticClass: "text-center" },
+                        [
+                          _c("ButtonIcon", {
+                            attrs: { variant: "danger", icon: "remove" },
+                            on: { click: _vm.deleteById }
+                          })
+                        ],
+                        1
+                      )
+                    : _vm._e()
                 ],
                 1
               )
@@ -535,7 +596,11 @@ var render = function() {
             { attrs: { sm: "auto" } },
             [
               _c("base-table", {
-                attrs: { items: _vm.provider, fields: _vm.fields }
+                attrs: { items: _vm.provider, fields: _vm.fields },
+                on: {
+                  "row-selected": _vm.onRowSelected,
+                  "row-dblclicked": _vm.onRowDblClicked
+                }
               })
             ],
             1

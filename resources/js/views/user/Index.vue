@@ -9,16 +9,23 @@
               <ButtonIcon />
             </router-link>
           </b-col>
-          <b-col class="text-center"> <ButtonIcon icon="edit" /></b-col>
-          <b-col class="text-center">
-            <ButtonIcon variant="danger" icon="remove"
+          <b-col class="text-center" v-if="showActions">
+            <ButtonIcon @click="edit" icon="edit"
+          /></b-col>
+          <b-col class="text-center" v-if="showActions">
+            <ButtonIcon @click="deleteById" variant="danger" icon="remove"
           /></b-col>
         </b-row>
       </b-col>
     </b-row>
     <b-row align-h="center">
       <b-col sm="auto">
-        <base-table :items="provider" :fields="fields"></base-table>
+        <base-table
+          :items="provider"
+          :fields="fields"
+          @row-selected="onRowSelected"
+          @row-dblclicked="onRowDblClicked"
+        ></base-table>
       </b-col>
     </b-row>
     <b-row align-h="center" class="mt-2">
@@ -48,7 +55,7 @@
 <script>
 import { mapActions } from "vuex";
 import ButtonIcon from "../../components/button/ButtonIcon.vue";
-import { getAllUsers } from "../../api/user";
+import { getAllUsers, deleteUser } from "../../api/user";
 
 export default {
   components: { ButtonIcon },
@@ -62,6 +69,8 @@ export default {
         { key: "email", label: "Email" },
         { key: "status", label: "Estado" },
       ],
+      user: null,
+      showActions: false,
     };
   },
   destroyed() {
@@ -79,6 +88,50 @@ export default {
         .catch((err) => {
           return [];
         });
+    },
+
+    deleteById() {
+      if (this.user.id) {
+        this.$swal({
+          title: `¿Desea eliminar el usuario?`,
+          icon: "question",
+          showCancelButton: true,
+        }).then((result) => {
+          if (result.value) {
+            deleteUser(this.user.id)
+              .then(() => {
+                this.showToast("Se elimino el usuario", "success");
+              })
+              .catch((err) => {
+                this.showToast(
+                  "Ocurrio un error al eliminar el usuario",
+                  "error"
+                );
+              });
+          }
+        });
+      }
+    },
+    onRowSelected(items) {
+      if (items.length > 0) {
+        this.user = items[0];
+        this.showActions = true;
+      } else {
+        this.user = null;
+        this.showActions = false;
+      }
+    },
+    edit() {
+      if (this.user) {
+        this.$router.push({
+          name: "user.edit",
+          params: { userId: this.user.id },
+        });
+      }
+    },
+    onRowDblClicked(item) {
+      this.user = item;
+      this.edit();
     },
   },
   mounted() {

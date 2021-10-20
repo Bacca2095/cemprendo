@@ -101,7 +101,7 @@ const routes = [
         }
     },
     {
-        path: "/user/edit/:id",
+        path: "/user/edit/:userId",
         name: "user.edit",
         component: () =>
             import(

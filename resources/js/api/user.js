@@ -13,3 +13,33 @@ export function getAllUsers() {
         method: "get"
     });
 }
+
+export function getUser(id) {
+    return request({
+        url: `user/${id}`,
+        method: "get"
+    });
+}
+
+export function storeUser(data) {
+    return request({
+        url: `user`,
+        method: "post",
+        data
+    });
+}
+
+export function updateUser(id, data) {
+    return request({
+        url: `user/${id}`,
+        method: "put",
+        data
+    });
+}
+
+export function deleteUser(id) {
+    return request({
+        url: `user/${id}`,
+        method: "delete"
+    });
+}

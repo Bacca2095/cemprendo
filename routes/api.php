@@ -25,5 +25,9 @@ Route::group(['prefix' => 'auth'], function () {
 });
 Route::group(['prefix' => 'user', 'middleware' => 'auth:sanctum'], function () {
     Route::get('/current', [UserController::class, 'currentUser']);
-    Route::get('/', [UserController::class, 'index']);
+    Route::get('/', [UserController::class, 'index'])->name('user.index');
+    Route::get('/{userId}', [UserController::class, 'show'])->name('user.show');
+    Route::post('/', [UserController::class, 'store'])->name('user.store');
+    Route::put('/{userId}', [UserController::class, 'update'])->name('user.update');
+    Route::delete('/{userId}', [UserController::class, 'destroy'])->name('user.destroy');
 });
