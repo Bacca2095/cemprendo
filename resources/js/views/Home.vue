@@ -1,6 +1,14 @@
 <template>
   <b-container class="background">
-    <b-img src="/images/background.png" fluid />
+    <b-row>
+      <b-col sm="12" class="text-center">
+        <b-img
+          class="mx-auto"
+          src="/images/background.png"
+          style="width: 60%"
+        />
+      </b-col>
+    </b-row>
   </b-container>
 </template>
 <script>

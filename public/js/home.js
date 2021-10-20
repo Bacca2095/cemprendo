@@ -23,6 +23,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -134,7 +142,26 @@ var render = function() {
   return _c(
     "b-container",
     { staticClass: "background" },
-    [_c("b-img", { attrs: { src: "/images/background.png", fluid: "" } })],
+    [
+      _c(
+        "b-row",
+        [
+          _c(
+            "b-col",
+            { staticClass: "text-center", attrs: { sm: "12" } },
+            [
+              _c("b-img", {
+                staticClass: "mx-auto",
+                staticStyle: { width: "60%" },
+                attrs: { src: "/images/background.png" }
+              })
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
     1
   )
 }
