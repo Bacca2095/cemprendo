@@ -165,10 +165,12 @@ export default {
       doc.text("Formulario", 40, 40);
       let xAxis = 50,
         yAxis = 50;
+      let nombre = "";
 
       this.formularios.map((form, index) => {
         if (form.id === this.form.id) {
-          doc.text(form.emprendimiento.idea, 200, 40);
+          nombre = form.emprendimiento.idea;
+          doc.text(nombre, 200, 40);
           doc.setFontSize(9);
           const keys = Object.keys(form);
           keys.map((key, index) => {
@@ -214,7 +216,7 @@ export default {
         }
       });
 
-      doc.save("todos.pdf");
+      doc.save(`formulario-${nombre.toLowerCase().replace(" ", "-")}.pdf`);
     },
     toSentence(key) {
       const result = key.replace(/([A-Z])/g, " $1");
