@@ -72,7 +72,7 @@ export default {
       storeUser(this.form)
         .then((result) => {
           this.showToast("Se guardo el usuario", "success");
-          back();
+          this.back();
         })
         .catch((err) => {
           this.showToast("Ocurrio un error al guardar el usuario", "error");
@@ -82,7 +82,7 @@ export default {
       updateUser(this.userId, this.form)
         .then((result) => {
           this.showToast("Se edito el usuario", "success");
-          back();
+          this.back();
         })
         .catch((err) => {
           this.showToast("Ocurrio un error al editar el usuario", "error");

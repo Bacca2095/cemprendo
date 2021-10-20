@@ -150,6 +150,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -202,6 +203,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           if (result.value) {
             (0,_api_user__WEBPACK_IMPORTED_MODULE_1__.deleteUser)(_this2.user.id).then(function () {
               _this2.showToast("Se elimino el usuario", "success");
+
+              _this2.$refs.users.$refs.table.refresh();
             })["catch"](function (err) {
               _this2.showToast("Ocurrio un error al eliminar el usuario", "error");
             });
@@ -596,6 +599,7 @@ var render = function() {
             { attrs: { sm: "auto" } },
             [
               _c("base-table", {
+                ref: "users",
                 attrs: { items: _vm.provider, fields: _vm.fields },
                 on: {
                   "row-selected": _vm.onRowSelected,

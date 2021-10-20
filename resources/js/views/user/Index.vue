@@ -23,6 +23,7 @@
         <base-table
           :items="provider"
           :fields="fields"
+          ref="users"
           @row-selected="onRowSelected"
           @row-dblclicked="onRowDblClicked"
         ></base-table>
@@ -101,6 +102,7 @@ export default {
             deleteUser(this.user.id)
               .then(() => {
                 this.showToast("Se elimino el usuario", "success");
+                this.$refs.users.$refs.table.refresh();
               })
               .catch((err) => {
                 this.showToast(

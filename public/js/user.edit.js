@@ -93,7 +93,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       (0,_api_user__WEBPACK_IMPORTED_MODULE_0__.storeUser)(this.form).then(function (result) {
         _this.showToast("Se guardo el usuario", "success");
 
-        back();
+        _this.back();
       })["catch"](function (err) {
         _this.showToast("Ocurrio un error al guardar el usuario", "error");
       });
@@ -104,7 +104,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       (0,_api_user__WEBPACK_IMPORTED_MODULE_0__.updateUser)(this.userId, this.form).then(function (result) {
         _this2.showToast("Se edito el usuario", "success");
 
-        back();
+        _this2.back();
       })["catch"](function (err) {
         _this2.showToast("Ocurrio un error al editar el usuario", "error");
       });
